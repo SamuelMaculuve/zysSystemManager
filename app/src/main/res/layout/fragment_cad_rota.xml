@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CadRota"
+    android:orientation="vertical"
+    android:padding="30dp"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_rounded_corner_black_24dp"
+        android:padding="20dp"
+        />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:textColorHint="@color/colorPrimary"
+        />
+    <EditText
+        android:id="@+id/tSaida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Terminal de Saida"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="22sp"
+        >
+    </EditText>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:layout_marginTop="5dp"
+        android:textColorHint="@color/colorPrimary"
+        />
+    <EditText
+        android:id="@+id/tChegada"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Terminal de Chegada"
+        android:ems="10"
+        android:inputType="date"
+        android:textSize="22sp"
+        >
+    </EditText>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:focusableInTouchMode="true"
+        android:textColorHint="@color/colorPrimary"
+        />
+    <EditText
+        android:id="@+id/via"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Via em Uso"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="22sp"
+        >
+    </EditText>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:focusableInTouchMode="true"
+        android:textColorHint="@color/colorPrimary"
+        />
+    <EditText
+        android:id="@+id/tempoEstimado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tempo Estimado"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="22sp"
+        >
+    </EditText>
+
+
+</LinearLayout>
