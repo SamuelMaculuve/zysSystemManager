@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.veiculo:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new CadVeiculo()).commit();
+                        new CadFuncionario()).commit();
                 break;
 
         }
