@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,7 +31,8 @@ import ac.mz.samuel.maculuve.myapplicationta.Models.Veiculo;
  */
 public class Funcionario extends Fragment {
     ListView list;
-
+    private ImageView imgDelete;
+    private FloatingActionButton cadFuncionario;
     String[] maintitle ={
             "Title 1","Title 2",
             "Title 3","Title 4",
@@ -62,6 +65,10 @@ public class Funcionario extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_funcionario, container, false);
+        cadFuncionario = view.findViewById(R.id.cadFuncionario);
+        //imgDelete = view.findViewById(R.id.);
+
+
         ControllerFuncionario funcionario = new ControllerFuncionario();
         FuncionarioModelo funcionarioModelo;
         String nomes[]=new String[DataBase.getListaLigadaFuncionario().tamanho()];
@@ -84,9 +91,7 @@ public class Funcionario extends Fragment {
         actv.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
         actv.setTextColor(Color.RED);
 
-        //
-        FloatingActionButton cadFuncionario = view.findViewById(R.id.cadFuncionario);
-
+        //open Register Funcionario
 
         cadFuncionario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +100,9 @@ public class Funcionario extends Fragment {
                         new CadFuncionario()).commit();
             }
         });
+        //Delete a Funcionario
+
+
 
         return view;
     }
