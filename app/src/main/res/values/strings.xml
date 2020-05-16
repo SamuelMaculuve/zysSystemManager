@@ -10,6 +10,7 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="imgdesc">imgdesc</string>
+
     <style name="customFab">
         <item name="android:background">@color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
