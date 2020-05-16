@@ -2,15 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="176dp"
+    android:layout_height="220dp"
     android:gravity="bottom"
     android:padding="16dp"
     android:background="@color/colorPrimaryDark">
+
     <ImageView
-        android:layout_width="180dp"
-        android:layout_height="130dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/ic_attach_money_black_24dp"/>
+        android:layout_width="78dp"
+        android:layout_height="93dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_group_black_24dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Trabalho em Grupo"
+        android:textSize="20sp" />
+
 
 </LinearLayout>

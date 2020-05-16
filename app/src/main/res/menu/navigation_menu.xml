@@ -4,26 +4,26 @@ xmlns:tools="http://schemas.android.com/tools"
 tools:showIn="navigation_view">
 <group android:checkableBehavior="single">
     <item android:id="@+id/funcionario"
-        android:icon="@drawable/ic_attach_money_black_24dp"
+        android:icon="@drawable/ic_work_black_24dp"
         android:title="Funcionario" />
 
     <item android:id="@+id/rota"
-        android:icon="@drawable/ic_attach_money_black_24dp"
+        android:icon="@drawable/ic_rounded_corner_black_24dp"
         android:title="Rota" />
 
     <item android:id="@+id/veiculo"
-        android:icon="@drawable/ic_attach_money_black_24dp"
+        android:icon="@drawable/ic_local_car_wash_black_24dp"
         android:title="Veiculo" />
 </group>
 <item android:title="Communicate">
     <menu>
         <item android:id="@+id/nav_share"
-            android:icon="@drawable/ic_attach_money_black_24dp"
-            android:title="Share"/>
+            android:icon="@drawable/ic_group_black_24dp"
+            android:title="Sobre Nos"/>
 
         <item android:id="@+id/nav_send"
-            android:icon="@drawable/ic_attach_money_black_24dp"
-            android:title="Send"/>
+            android:icon="@drawable/ic_settings_applications_black_24dp"
+            android:title="Ajuda"/>
     </menu>
 </item>
 
