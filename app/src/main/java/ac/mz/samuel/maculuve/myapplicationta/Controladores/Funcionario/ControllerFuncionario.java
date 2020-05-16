@@ -20,7 +20,7 @@ public class ControllerFuncionario {
 //
          FuncionarioModelo funcionarioModelo=new FuncionarioModelo(1,nome,dataNascimento,residencia,telefone,veiculo);
          DataBase.setListaLigadaFuncionario(funcionarioModelo);
-         DataBase.gravarFuncionarios(DataBase.getListaLigadaFuncionario());
+        // DataBase.gravarFuncionarios(DataBase.getListaLigadaFuncionario());
     }
 
     public  void visualizarFuncionario(){

@@ -7,102 +7,66 @@
     tools:context=".Rota"
     android:orientation="vertical"
     android:padding="30dp"
-
     >
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/ic_account_circle_black_24dp"
-        android:padding="20dp"
-        />
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:focusableInTouchMode="true"
-        android:textColorHint="@color/colorPrimary"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Full Name"
-        android:ems="10"
-        android:inputType="text"
-        android:textSize="22sp"
-        >
-    </EditText>
 
-    <android.support.design.widget.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:focusableInTouchMode="true"
-        android:layout_marginTop="5dp"
-        android:textColorHint="@color/colorPrimary"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter User Name"
-        android:ems="10"
-        android:inputType="text"
-        android:textSize="22sp"
-        >
-    </EditText>
+        android:layout_height="66dp"
+        android:orientation="horizontal">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:focusableInTouchMode="true"
-        android:textColorHint="@color/colorPrimary"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Full Name"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:inputType="text"
-        android:textSize="22sp"
-        >
-    </EditText>
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:focusableInTouchMode="true"
-        android:textColorHint="@color/colorPrimary"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Full Name"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:inputType="text"
-        android:textSize="22sp"
-        >
-    </EditText>
-    <Button
-        android:id="@+id/saveRota"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Guardar"
-        android:textSize="22sp"
-        android:textColor="#ffff"
-        android:background="@drawable/button_rounded" />
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
->
-            <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5">
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd='true'
-                android:layout_alignParentBottom='true'
-                app:fab_addButtonColorNormal="@color/colorPrimary"
-                app:fab_addButtonColorPressed="@color/colorAccent"
-                />
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_search_black_24dp" />
+
         </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:hint="Location" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:hint="Radius (m)" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="567dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
 
 
 
