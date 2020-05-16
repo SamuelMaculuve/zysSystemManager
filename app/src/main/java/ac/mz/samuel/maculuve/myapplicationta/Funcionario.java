@@ -6,11 +6,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -22,6 +26,7 @@ import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.Funcionar
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.ListaLigadaFuncionario;
 import ac.mz.samuel.maculuve.myapplicationta.Models.DataBase;
 import ac.mz.samuel.maculuve.myapplicationta.Models.Veiculo;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 /**
@@ -31,7 +36,7 @@ import ac.mz.samuel.maculuve.myapplicationta.Models.Veiculo;
  */
 public class Funcionario extends Fragment {
     ListView list;
-    private ImageView imgDelete;
+    private ImageView imgPesquisar;
     private FloatingActionButton cadFuncionario;
     String[] maintitle ={
             "Title 1","Title 2",
@@ -62,11 +67,11 @@ public class Funcionario extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_funcionario, container, false);
         cadFuncionario = view.findViewById(R.id.cadFuncionario);
-        //imgDelete = view.findViewById(R.id.);
+        imgPesquisar = view.findViewById(R.id.imgPesquisar);
 
 
         ControllerFuncionario funcionario = new ControllerFuncionario();
@@ -101,8 +106,45 @@ public class Funcionario extends Fragment {
             }
         });
         //Delete a Funcionario
+        AdapterView.OnItemClickListener itemClickListener  = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Getting the Country TextView
+                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Tem Certeza?")
+                        .setContentText("Não será possível recuperar este arquivo\n!")
+                        .setConfirmText("Sim Apagar!")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+                                showToast("Apagado");
+                            }
+                        })
+                        .setCancelButton("Cancelar", new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+                                showToast("Cancelar");
+                            }
+                        })
+                        .show();
+            }
+        };
+        list.setOnItemClickListener(itemClickListener);
 
-
+        //Search for funcionrio
+        imgPesquisar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final EditText editText = new EditText(getContext());
+                new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE)
+                        .setTitleText("Digite o que Deseja Pesquisar")
+                        .setConfirmText("Ok")
+                        .setCustomView(editText)
+                        .show();
+            }
+        });
 
         return view;
     }
