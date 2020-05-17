@@ -1,15 +1,21 @@
 package ac.mz.samuel.maculuve.myapplicationta;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.ControllerFuncionario;
@@ -23,52 +29,23 @@ import ac.mz.samuel.maculuve.myapplicationta.Models.Veiculo;
  * create an instance of this fragment.
  */
 public class CadFuncionario extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
     private Button btnCadastrar;
+    DatePickerDialog picker;
     private TextView txtData,txtCategoria,txtResidencia,txtTelefone,txtNome;
+    private Spinner spCategoria,spVeiculo;
+    String[] categoria ={"","Cobrador","Mororista"};
+    String[] veiculo ={"","Cobrador","Mororista"};
+
     private void _instanciar(){
       //  p Button btnCadastrar = findViewById(R.id.btnCadastrar);
     }
-
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public CadFuncionario() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CadFuncionario.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CadFuncionario newInstance(String param1, String param2) {
-        CadFuncionario fragment = new CadFuncionario();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
 
-        }
     }
 
     FuncionarioModelo funcionario=new FuncionarioModelo();
@@ -83,11 +60,22 @@ public class CadFuncionario extends Fragment {
         View view=inflater.inflate(R.layout.fragment_cad_funcionario, container, false);
         btnCadastrar=view.findViewById(R.id.saveFun);
         txtData=view.findViewById(R.id.txtData);
-        txtCategoria=view.findViewById(R.id.txtCategoria);
+        spCategoria = view.findViewById(R.id.spCategoria);
+        spVeiculo = view.findViewById(R.id.spVeiculo);
         txtNome=view.findViewById(R.id.txtNome);
         txtResidencia=view.findViewById(R.id.txtResidencia);
         txtTelefone=view.findViewById(R.id.txtTelefone);
         txtData=view.findViewById(R.id.txtData);
+
+        //set category
+        ArrayAdapter<String> adapterCargo = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,categoria);
+        adapterCargo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spCategoria.setAdapter(adapterCargo);
+       // veiculo
+
+        ArrayAdapter<String> adapterVeiculo = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,veiculo);
+        adapterVeiculo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spCategoria.setAdapter(adapterVeiculo);
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +95,28 @@ public class CadFuncionario extends Fragment {
                 }catch (Exception ex) {
                     System.out.println("Erro" +ex.getMessage());
                 }
+            }
+        });
+
+        //set datapiker
+        txtData = view.findViewById(R.id.txtData);
+        txtData.setInputType(InputType.TYPE_NULL);
+        txtData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(getContext(),
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                txtData.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
+                picker.show();
             }
         });
 

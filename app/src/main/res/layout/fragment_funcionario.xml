@@ -89,6 +89,7 @@
             app:fab_icon="@drawable/ic_add_black_24dp"
             app:fab_size="mini"
             app:fab_title="Registar Funcionario" />
+       
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

@@ -48,9 +48,9 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
     };
 
     Integer[] imgid={
-            R.drawable.download_1,R.drawable.download_2,
-            R.drawable.download_3,R.drawable.download_4,
-            R.drawable.download_5,
+            R.drawable.ic_account_circle_black_24dp,R.drawable.ic_account_circle_black_24dp,
+            R.drawable.ic_account_circle_black_24dp,R.drawable.ic_account_circle_black_24dp,
+            R.drawable.ic_account_circle_black_24dp,
     };
     String[] language ={"C","C++","Java",".NET","iPhone","Android","ASP.NET","PHP"};
     String[] cargo ={"","Cobrador","Mororista"};
