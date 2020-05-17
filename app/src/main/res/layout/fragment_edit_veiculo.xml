@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CadVeiculo"
+    tools:context=".EditVeiculo"
     android:orientation="vertical"
     android:padding="30dp"
     >
@@ -91,7 +91,7 @@
         android:id="@+id/saveVeiculo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar"
+        android:text="Editar"
         android:textSize="22sp"
         android:textColor="#ffff"
         android:background="@drawable/button_rounded" />

@@ -2,18 +2,19 @@ package ac.mz.samuel.maculuve.myapplicationta;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import java.util.Calendar;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 
 /**
@@ -26,43 +27,97 @@ public class Veiculo extends Fragment {
     EditText eText;
     Button btnGet;
     TextView tvw;
-    public Veiculo() {
-        // Required empty public constructor
-    }
+    ListView list;
+    private FloatingActionButton cadVeiculo,editVeiculo;
 
+    String[] maintitle ={
+            "Title 1","Title 2",
+            "Title 3","Title 4",
+            "Title 5",
+    };
+
+    String[] subtitle ={
+            "Sub Title 1","Sub Title 2",
+            "Sub Title 3","Sub Title 4",
+            "Sub Title 5",
+    };
+
+    Integer[] imgid={
+            R.drawable.ic_account_circle_black_24dp,R.drawable.ic_account_circle_black_24dp,
+            R.drawable.ic_account_circle_black_24dp,R.drawable.ic_account_circle_black_24dp,
+            R.drawable.ic_account_circle_black_24dp,
+    };
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
 
+
+
+
+
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view =  inflater.inflate(R.layout.fragment_veiculo, container, false);
-        //tvw = view.findViewById(R.id.textView1);
-        eText = view.findViewById(R.id.editText1);
-        eText.setInputType(InputType.TYPE_NULL);
-        eText.setOnClickListener(new View.OnClickListener() {
+        cadVeiculo = view.findViewById(R.id.cadVeiculo);
+        editVeiculo = view.findViewById(R.id.editVeiculo);
+
+        editVeiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar cldr = Calendar.getInstance();
-                int day = cldr.get(Calendar.DAY_OF_MONTH);
-                int month = cldr.get(Calendar.MONTH);
-                int year = cldr.get(Calendar.YEAR);
-                // date picker dialog
-                picker = new DatePickerDialog(getContext(),
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                            }
-                        }, year, month, day);
-                picker.show();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new EditVeiculo()).commit();
             }
         });
-       // eText.setInputType(InputType.TYPE_NULL);
+        cadVeiculo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new CadVeiculo()).commit();
+            }
+        });
+
+        MyListAdapter adapter=new MyListAdapter(getActivity(), maintitle, subtitle,imgid);
+        list = view.findViewById(R.id.list);
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // TODO Auto-generated method stub
+                if(position == 0) {
+
+                    //code specific to first list item
+                    Toast.makeText(getContext(),"Place Your First Option Code",Toast.LENGTH_SHORT).show();
+                }
+
+                else if(position == 1) {
+                    //code specific to 2nd list item
+                    Toast.makeText(getContext(),"Place Your Second Option Code",Toast.LENGTH_SHORT).show();
+                }
+
+                else if(position == 2) {
+
+                    Toast.makeText(getContext(),"Place Your Third Option Code",Toast.LENGTH_SHORT).show();
+                }
+                else if(position == 3) {
+
+                    Toast.makeText(getContext(),"Place Your Forth Option Code",Toast.LENGTH_SHORT).show();
+                }
+                else if(position == 4) {
+
+                    Toast.makeText(getContext(),"Place Your Fifth Option Code",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
 
         return view;
     }

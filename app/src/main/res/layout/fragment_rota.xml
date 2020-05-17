@@ -20,6 +20,7 @@
             android:layout_weight="0.5">
 
             <ImageView
+                android:id="@+id/imgPesquisar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -37,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:hint="Location" />
+                android:hint="Apelido" />
         </RelativeLayout>
 
 
@@ -46,26 +47,71 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.0">
 
-            <EditText
+            <Spinner
+                android:id="@+id/spCargo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:hint="Radius (m)" />
+
         </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="567dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" >
+        </ListView>
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd='true'
+            android:layout_alignParentBottom='true'
+            app:fab_addButtonColorNormal="@color/colorPrimary"
+            app:fab_addButtonColorPressed="@color/colorAccent"
+            app:fab_addButtonPlusIconColor="@color/colorAccent"
+            app:fab_labelStyle="@style/customFab">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/cadRota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_addButtonColorNormal="@color/white"
+                app:fab_addButtonColorPressed="@color/colorAccent"
+                app:fab_icon="@drawable/ic_add_black_24dp"
+                app:fab_size="mini"
+                app:fab_title="Registar Rota" />
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/editRota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_addButtonColorNormal="@color/white"
+                app:fab_addButtonColorPressed="@color/colorAccent"
+                app:fab_icon="@drawable/ic_add_black_24dp"
+                app:fab_size="mini"
+                app:fab_title="Editar Rota" />
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+    </LinearLayout>
 
 
 

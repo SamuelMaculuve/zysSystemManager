@@ -59,39 +59,61 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="372dp" />
+            android:layout_height="wrap_content" >
+        </ListView>
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
 
     </LinearLayout>
 
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd='true'
-        android:layout_alignParentBottom='true'
-        app:fab_addButtonColorNormal="@color/colorPrimary"
-        app:fab_addButtonColorPressed="@color/colorAccent"
-        app:fab_addButtonPlusIconColor="@color/colorAccent"
-        app:fab_labelStyle="@style/customFab">
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/cadFuncionario"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_addButtonColorNormal="@color/white"
+            android:layout_alignParentEnd='true'
+            android:layout_alignParentBottom='true'
+            app:fab_addButtonColorNormal="@color/colorPrimary"
             app:fab_addButtonColorPressed="@color/colorAccent"
-            app:fab_icon="@drawable/ic_add_black_24dp"
-            app:fab_size="mini"
-            app:fab_title="Registar Funcionario" />
-       
+            app:fab_addButtonPlusIconColor="@color/colorAccent"
+            app:fab_labelStyle="@style/customFab">
 
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/cadFuncionario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_addButtonColorNormal="@color/white"
+                app:fab_addButtonColorPressed="@color/colorAccent"
+                app:fab_icon="@drawable/ic_add_black_24dp"
+                app:fab_size="mini"
+                app:fab_title="Registar Funcionario" />
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/editFuncionario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_addButtonColorNormal="@color/white"
+                app:fab_addButtonColorPressed="@color/colorAccent"
+                app:fab_icon="@drawable/ic_add_black_24dp"
+                app:fab_size="mini"
+                app:fab_title="Editar Funcionario" />
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+    </LinearLayout>
+
+
 
 
 </LinearLayout>

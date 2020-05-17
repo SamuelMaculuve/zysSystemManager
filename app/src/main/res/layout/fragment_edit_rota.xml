@@ -3,15 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CadVeiculo"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".EditRota"
     android:orientation="vertical"
     android:padding="30dp"
-    >
 
+    >
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:src="@drawable/ic_local_car_wash_black_24dp"
+        android:src="@drawable/ic_account_circle_black_24dp"
         android:padding="20dp"
         />
     <com.google.android.material.textfield.TextInputLayout
@@ -21,10 +22,9 @@
         android:textColorHint="@color/colorPrimary"
         />
     <EditText
-        android:id="@+id/matricula"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Matricula"
+        android:hint="Full Name"
         android:ems="10"
         android:inputType="text"
         android:textSize="22sp"
@@ -39,12 +39,11 @@
         android:textColorHint="@color/colorPrimary"
         />
     <EditText
-        android:id="@+id/rota"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Rota"
+        android:hint="Enter User Name"
         android:ems="10"
-        android:inputType="date"
+        android:inputType="text"
         android:textSize="22sp"
         >
     </EditText>
@@ -57,10 +56,9 @@
         android:textColorHint="@color/colorPrimary"
         />
     <EditText
-        android:id="@+id/lotacao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Lotação"
+        android:hint="Full Name"
         android:layout_marginTop="5dp"
         android:ems="10"
         android:inputType="text"
@@ -75,25 +73,37 @@
         android:textColorHint="@color/colorPrimary"
         />
     <EditText
-        android:id="@+id/nPasageiros"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nr de passageiros"
+        android:hint="Full Name"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
         android:ems="10"
         android:inputType="text"
         android:textSize="22sp"
         >
     </EditText>
-
     <Button
-        android:id="@+id/saveVeiculo"
+        android:id="@+id/saveRota"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar"
+        android:text="Editar"
         android:textSize="22sp"
         android:textColor="#ffff"
         android:background="@drawable/button_rounded" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        >
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd='true'
+            android:layout_alignParentBottom='true'
+            app:fab_addButtonColorNormal="@color/colorPrimary"
+            app:fab_addButtonColorPressed="@color/colorAccent"
+            />
+    </RelativeLayout>
+
+
 
 </LinearLayout>

@@ -10,10 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
+
 
 public class Rota extends Fragment {
     ListView list;
-
+    private FloatingActionButton cadRota,editRota;
     String[] maintitle ={
             "Title 1","Title 2",
             "Title 3","Title 4",
@@ -36,6 +38,23 @@ public class Rota extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_rota,container,false);
+        cadRota = view.findViewById(R.id.cadRota);
+        editRota = view.findViewById(R.id.editRota);
+
+        editRota.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new EditRota()).commit();
+            }
+        });
+        cadRota.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new CadRota()).commit();
+            }
+        });
         //
 
 

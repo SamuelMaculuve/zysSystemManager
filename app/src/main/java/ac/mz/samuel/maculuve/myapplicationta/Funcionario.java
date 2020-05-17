@@ -33,7 +33,7 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
     private ListView list;
     private ImageView imgPesquisar;
     private AutoCompleteTextView actv;
-    private FloatingActionButton cadFuncionario;
+    private FloatingActionButton cadFuncionario,editFuncionario;
     private Spinner spCargo;
 
     Integer[] imgid={
@@ -107,6 +107,7 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
         cadFuncionario = view.findViewById(R.id.cadFuncionario);
         imgPesquisar = view.findViewById(R.id.imgPesquisar);
         spCargo = view.findViewById(R.id.spCargo);
+        editFuncionario = view.findViewById(R.id.editFuncionario);
 
         carregarDados();
         ControllerFuncionario controllerFuncionario=new ControllerFuncionario();
@@ -135,6 +136,14 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
             public void onClick(View v) {
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new CadFuncionario()).commit();
+            }
+        });
+        //open edit
+        editFuncionario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new EditFuncionario()).commit();
             }
         });
         //Delete a Funcionario
