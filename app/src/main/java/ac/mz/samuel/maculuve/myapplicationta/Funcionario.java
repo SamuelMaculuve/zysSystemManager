@@ -2,30 +2,25 @@ package ac.mz.samuel.maculuve.myapplicationta;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
-import java.util.Date;
-
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.ControllerFuncionario;
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.FuncionarioModelo;
-import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.ListaLigadaFuncionario;
 import ac.mz.samuel.maculuve.myapplicationta.Models.DataBase;
-import ac.mz.samuel.maculuve.myapplicationta.Models.Veiculo;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
@@ -34,10 +29,12 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
  * create an instance of this fragment.
  */
-public class Funcionario extends Fragment {
-    ListView list;
+public class Funcionario extends Fragment implements AdapterView.OnItemSelectedListener {
+    private ListView list;
     private ImageView imgPesquisar;
+    private AutoCompleteTextView actv;
     private FloatingActionButton cadFuncionario;
+    private Spinner spCargo;
     String[] maintitle ={
             "Title 1","Title 2",
             "Title 3","Title 4",
@@ -56,7 +53,7 @@ public class Funcionario extends Fragment {
             R.drawable.download_5,
     };
     String[] language ={"C","C++","Java",".NET","iPhone","Android","ASP.NET","PHP"};
-
+    String[] cargo ={"","Cobrador","Mororista"};
     private ListView mListView;
     private ArrayAdapter aAdapter;
 
@@ -72,7 +69,7 @@ public class Funcionario extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_funcionario, container, false);
         cadFuncionario = view.findViewById(R.id.cadFuncionario);
         imgPesquisar = view.findViewById(R.id.imgPesquisar);
-
+        spCargo = view.findViewById(R.id.spCargo);
 
         ControllerFuncionario funcionario = new ControllerFuncionario();
         FuncionarioModelo funcionarioModelo;
@@ -91,13 +88,20 @@ public class Funcionario extends Fragment {
         // autocomplete
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.select_dialog_item,language);
         //Getting the instance of AutoCompleteTextView
-        AutoCompleteTextView actv =  (AutoCompleteTextView) view.findViewById(R.id.autoCompleteTextView);
+        actv =  (AutoCompleteTextView) view.findViewById(R.id.autoCompleteTextView);
         actv.setThreshold(1);//will start working from first character
         actv.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
         actv.setTextColor(Color.RED);
-
+        //autocomplete action
+        actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object item = parent.getItemAtPosition(position);
+                showToast(""+item);
+            }
+        });
+       // actv.setOnItemSelectedListener(new View.OnFocusChangeListener());
         //open Register Funcionario
-
         cadFuncionario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,6 +136,11 @@ public class Funcionario extends Fragment {
             }
         };
         list.setOnItemClickListener(itemClickListener);
+        //Spinner Cargo
+        ArrayAdapter<String> adapterCargo = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,cargo);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spCargo.setAdapter(adapterCargo);
+        spCargo.setOnItemSelectedListener(this);
 
         //Search for funcionrio
         imgPesquisar.setOnClickListener(new View.OnClickListener() {
@@ -150,5 +159,15 @@ public class Funcionario extends Fragment {
     }
     public void showToast(String message){
         Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(getContext(),cargo[position] , Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

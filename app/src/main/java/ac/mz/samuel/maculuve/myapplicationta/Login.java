@@ -1,13 +1,15 @@
 package ac.mz.samuel.maculuve.myapplicationta;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class Login extends AppCompatActivity {
     private Button btnLigin;
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,9 +19,15 @@ public class Login extends AppCompatActivity {
         btnLigin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Veiculo()).commit();
-                //navigationView.setCheckedItem(R.id.nav_message);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Home()).commit();
             }
         });
+       /* btnLigin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Veiculo()).commit();
+                //
+            }
+        });*/
     }
 }

@@ -1,7 +1,6 @@
 package ac.mz.samuel.maculuve.myapplicationta;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +8,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import java.util.Date;
 
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.ControllerFuncionario;
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.FuncionarioModelo;
-import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.ListaLigadaFuncionario;
-import ac.mz.samuel.maculuve.myapplicationta.Models.DataBase;
 import ac.mz.samuel.maculuve.myapplicationta.Models.Veiculo;
 
 
