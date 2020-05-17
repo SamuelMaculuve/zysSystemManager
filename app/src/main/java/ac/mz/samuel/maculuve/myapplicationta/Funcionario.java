@@ -51,7 +51,6 @@ public class Funcionario extends Fragment {
 
     private ListView mListView;
     private ArrayAdapter aAdapter;
-    private String[] users = { "Suresh Dasari", "Rohini Alavala", "Trishika Dasari", "Praveen Alavala", "Madav Sai", "Hamsika Y"};
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,22 +63,15 @@ public class Funcionario extends Fragment {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_funcionario, container, false);
         ControllerFuncionario funcionario = new ControllerFuncionario();
-        String [] nome = {"Sanuel","Carlos"};
-        //ListView listView = (ListView) view.findViewById(R.id.mainMenu) ;
-        //simpleList = (ListView)findViewById(R.id.simpleListView);
-        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_listview, R.id.textView, countryList);
-        //simpleList.setAdapter(arrayAdapter);
         FuncionarioModelo funcionarioModelo;
         String nomes[]=new String[DataBase.getListaLigadaFuncionario().tamanho()];
+        String residencia[]=new String[DataBase.getListaLigadaFuncionario().tamanho()];
         for (int i = 0; i < DataBase.getListaLigadaFuncionario().tamanho(); i++) {
             funcionarioModelo = (FuncionarioModelo) DataBase.getListaLigadaFuncionario().pega(i);
             nomes[i] = funcionarioModelo.getNome();
+            residencia[i] = funcionarioModelo.getResidencia();
         }
-        //funcionario.visualizarFuncionario();
-       // aAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, nomes);
-        //mListView.setAdapter(aAdapter);
-        //listView.setAdapter(aAdapter);
-        MyListAdapter adapterList =new MyListAdapter(getActivity(), maintitle, subtitle,imgid);
+        MyListAdapter adapterList =new MyListAdapter(getActivity(), nomes, residencia,imgid);
         list = (ListView) view.findViewById(R.id.list);
         //list=(ListView)findViewById(R.id.list);
         list.setAdapter(adapterList);

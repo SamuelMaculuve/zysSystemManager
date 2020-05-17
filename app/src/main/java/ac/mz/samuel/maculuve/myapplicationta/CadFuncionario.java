@@ -88,6 +88,7 @@ public class CadFuncionario extends Fragment {
         txtNome=view.findViewById(R.id.txtNome);
         txtResidencia=view.findViewById(R.id.txtResidencia);
         txtTelefone=view.findViewById(R.id.txtTelefone);
+        txtData=view.findViewById(R.id.txtData);
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,11 +99,12 @@ public class CadFuncionario extends Fragment {
                     String telefone=  txtTelefone.getText().toString();
                     ControllerFuncionario funcionario=new ControllerFuncionario();
                     funcionario.registarFuncionario(nome,new Date(),residencia,telefone,new Veiculo());
-                   // System.out.println("Adicionado com Sucesso!");
-                  //  FuncionarioModelo funcionarioModelo=new FuncionarioModelo(1,nome,new Date(),residencia,telefone,new Veiculo());
-                  ///  DataBase.setListaLigadaFuncionario(funcionarioModelo);
-
-
+                    Toast.makeText(getContext(),"Funcionario Cadastrado com sucesso",Toast.LENGTH_LONG).show();
+                    txtNome.setText(null);
+                    txtResidencia.setText(null);
+                    txtTelefone.setText(null);
+                    txtCategoria.setText(null);
+                    txtData.setText(null);
                 }catch (Exception ex) {
                     System.out.println("Erro" +ex.getMessage());
                 }
