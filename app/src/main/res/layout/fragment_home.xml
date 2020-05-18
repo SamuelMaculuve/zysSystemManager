@@ -33,27 +33,21 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/apple"
-                    android:src="@drawable/ic_attach_money_black_24dp"
+                    android:background="@drawable/bg"
+                    android:src="@drawable/ic_work_black_24dp"
                     android:padding="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textSize="15dp"
                     android:layout_marginTop="10dp"
-                    android:text="Banking"/>
+                    android:text="Funcionario"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/lightgray"
                     android:layout_margin="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Check your bank activities"
-                    android:padding="5dp"
-                    android:textColor="@android:color/darker_gray"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -71,27 +65,21 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/apple"
-                    android:src="@drawable/ic_local_car_wash_black_24dp"
+                    android:background="@drawable/bg"
+                    android:src="@drawable/ic_rounded_corner_black_24dp"
                     android:padding="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textSize="15dp"
                     android:layout_marginTop="10dp"
-                    android:text="Ideas"/>
+                    android:text="Rotas"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/lightgray"
                     android:layout_margin="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Check your bank activities"
-                    android:padding="5dp"
-                    android:textColor="@android:color/darker_gray"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -117,27 +105,22 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/ic_account_circle_black_24dp"
-                    android:src="@drawable/button_rounded"
+                    android:background="@drawable/bg"
+                    android:src="@drawable/ic_map_black_24dp"
                     android:padding="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textSize="15dp"
                     android:layout_marginTop="10dp"
-                    android:text="Add"/>
+                    android:text="Mapa"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/lightgray"
                     android:layout_margin="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Check your bank activities"
-                    android:padding="5dp"
-                    android:textColor="@android:color/darker_gray"/>
+
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -157,15 +140,16 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/button_rounded"
+                    android:background="@drawable/bg"
                     android:padding="10dp"
-                    android:src="@drawable/apple" />
+                    android:src="@drawable/ic_local_car_wash_black_24dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Links"
+                    android:text="Veiculos"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
                 <View
@@ -174,13 +158,6 @@
                     android:layout_margin="10dp"
                     android:background="@color/lightgray" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="Check your bank activities"
-                    android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -207,27 +184,22 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/button_rounded"
-                    android:src="@drawable/ic_attach_money_black_24dp"
+                    android:background="@drawable/bg"
+                    android:src="@drawable/ic_group_black_24dp"
                     android:padding="10dp"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="Add"/>
+                    android:text="Sobre Nos"
+                    android:textSize="15dp"
+                    android:textStyle="" />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/lightgray"
                     android:layout_margin="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Check your bank activities"
-                    android:padding="5dp"
-                    android:textColor="@android:color/darker_gray"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
