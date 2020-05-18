@@ -13,18 +13,20 @@ public class FuncionarioModelo implements Serializable {
     private String residencia;
     private String telefone;
     private Veiculo veiculo;
+    private String categoria;
 
     public FuncionarioModelo() {
         super();
     }
 
-    public FuncionarioModelo(int id, String nome, Date dataNascimento, String residencia, String telefone, Veiculo veiculo) {
+    public FuncionarioModelo(int id, String nome, Date dataNascimento, String residencia, String telefone, Veiculo veiculo, String categoria) {
         this.id = id;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.residencia = residencia;
         this.telefone = telefone;
         this.veiculo = veiculo;
+        this.categoria = categoria;
     }
 
     public String getNome() {
@@ -75,14 +77,24 @@ public class FuncionarioModelo implements Serializable {
         this.id = id;
     }
 
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
     @Override
     public String toString() {
         return "FuncionarioModelo{" +
-                "nome='" + nome + '\'' +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
                 ", dataNascimento=" + dataNascimento +
                 ", residencia='" + residencia + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", veiculo=" + veiculo +
+                ", categoria='" + categoria + '\'' +
                 '}';
     }
 }

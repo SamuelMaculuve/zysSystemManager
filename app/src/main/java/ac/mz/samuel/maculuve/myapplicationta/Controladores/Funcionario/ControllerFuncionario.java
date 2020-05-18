@@ -9,24 +9,21 @@ import ac.mz.samuel.maculuve.myapplicationta.Models.Veiculo;
 
 public class ControllerFuncionario {
 
-    public void registarFuncionario(String nome, Date dataNascimento, String residencia, String telefone, Veiculo veiculo) {
+    public void registarFuncionario(String nome, Date dataNascimento, String residencia, String telefone, Veiculo veiculo,String categoria) {
 
-       // DataBase.lerFuncionarios();
-       // FuncionarioModelo funcionario;
-      //  int lastCodigo=0;
-        ////Pegar ultimo codigo
-//        produtos=(Produto)DataBase.getVectorProdutos().get(DataBase.getVectorProdutos().size()-1);
-//        lastCodigo=produtos.getId();
-//
-         FuncionarioModelo funcionarioModelo=new FuncionarioModelo(1,nome,dataNascimento,residencia,telefone,veiculo);
+         FuncionarioModelo funcionarioModelo=new FuncionarioModelo(DataBase.getListaLigadaFuncionario().tamanho()+1,nome,dataNascimento,residencia,telefone,veiculo,categoria);
          DataBase.setListaLigadaFuncionario(funcionarioModelo);
         // DataBase.gravarFuncionarios(DataBase.getListaLigadaFuncionario());
     }
 
-    public  void visualizarFuncionario(){
-      //  DataBase.lerFuncionarios();
+    public void apagarFuncionario(int id){
+        DataBase.getListaLigadaFuncionario().removePosicao(id);
+    }
+    public  void visualizarFuncionarios(){
+        FuncionarioModelo funcionario;
         for (int i = 0; i < DataBase.getListaLigadaFuncionario().tamanho(); i++) {
-            System.out.println(DataBase.getListaLigadaFuncionario().pega(i));
+            funcionario = (FuncionarioModelo) DataBase.getListaLigadaFuncionario().pega(i);
+            System.out.println(funcionario);
         }
 
     }

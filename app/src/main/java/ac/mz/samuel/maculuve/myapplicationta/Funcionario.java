@@ -35,33 +35,70 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
     private AutoCompleteTextView actv;
     private FloatingActionButton cadFuncionario;
     private Spinner spCargo;
-    String[] maintitle ={
-            "Title 1","Title 2",
-            "Title 3","Title 4",
-            "Title 5",
-    };
-
-    String[] subtitle ={
-            "Sub Title 1","Sub Title 2",
-            "Sub Title 3","Sub Title 4",
-            "Sub Title 5",
-    };
 
     Integer[] imgid={
             R.drawable.ic_account_circle_black_24dp,R.drawable.ic_account_circle_black_24dp,
             R.drawable.ic_account_circle_black_24dp,R.drawable.ic_account_circle_black_24dp,
             R.drawable.ic_account_circle_black_24dp,
     };
-    String[] language ={"C","C++","Java",".NET","iPhone","Android","ASP.NET","PHP"};
-    String[] cargo ={"","Cobrador","Mororista"};
-    private ListView mListView;
-    private ArrayAdapter aAdapter;
+    String[] cargo ={"","Cobrador","Motorista"};
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    MyListAdapter adapterList=null;
+    ArrayAdapter<String> adapter=null;
 
+    public void   pegaNomes() {
+        String nome[] = new String[DataBase.getListaLigadaFuncionario().tamanho()];
+        FuncionarioModelo funcionario;
+        for (int i = 0; i < DataBase.getListaLigadaFuncionario().tamanho(); i++) {
+            funcionario = (FuncionarioModelo) DataBase.getListaLigadaFuncionario().pega(i);
+            nome[i] = funcionario.getNome();
+        }
+        adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.select_dialog_item,nome);
+    }
+    public  void carregarDados(){
+        adapterList=null;
+        String nomes[]=new String[DataBase.getListaLigadaFuncionario().tamanho()];
+        String residencia[]=new String[DataBase.getListaLigadaFuncionario().tamanho()];
+        FuncionarioModelo funcionarioModelo;
+        for (int i = 0; i < DataBase.getListaLigadaFuncionario().tamanho(); i++) {
+            funcionarioModelo = (FuncionarioModelo) DataBase.getListaLigadaFuncionario().pega(i);
+            nomes[i] = funcionarioModelo.getNome();
+            residencia[i] = funcionarioModelo.getResidencia();
+        }
+        adapterList=new MyListAdapter(getActivity(), nomes, residencia,imgid);
+    }
+    public  void pegaFuncionario(String item){
+        adapterList=null;
+        String nome[]=new String[1];
+        String residencia[]=new String[1];
+        FuncionarioModelo funcionarioModelo;
+        for (int i = 0; i < DataBase.getListaLigadaFuncionario().tamanho(); i++) {
+            funcionarioModelo = (FuncionarioModelo) DataBase.getListaLigadaFuncionario().pega(i);
+            if(funcionarioModelo.getNome().equals(item)) {
+                nome[0] = funcionarioModelo.getNome();
+                residencia[0] = funcionarioModelo.getResidencia();
+            }
+        }
+        adapterList=new MyListAdapter(getActivity(), nome, residencia,imgid);
+    }
+    public  void pegarCategoria(String categoria){
+        adapterList=null;
+        String nomes[]=new String[DataBase.getListaLigadaFuncionario().tamanho()];
+        String residencia[]=new String[DataBase.getListaLigadaFuncionario().tamanho()];
+        FuncionarioModelo funcionarioModelo;
+        for (int i = 0; i < DataBase.getListaLigadaFuncionario().tamanho(); i++) {
+            funcionarioModelo = (FuncionarioModelo) DataBase.getListaLigadaFuncionario().pega(i);
+            if (funcionarioModelo.getCategoria().equals(categoria)) {
+                nomes[i] = funcionarioModelo.getNome();
+                residencia[i] = funcionarioModelo.getResidencia();
+            }
+        }
+        adapterList=new MyListAdapter(getActivity(), nomes, residencia,imgid);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -71,23 +108,12 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
         imgPesquisar = view.findViewById(R.id.imgPesquisar);
         spCargo = view.findViewById(R.id.spCargo);
 
-        ControllerFuncionario funcionario = new ControllerFuncionario();
-        FuncionarioModelo funcionarioModelo;
-        String nomes[]=new String[DataBase.getListaLigadaFuncionario().tamanho()];
-        String residencia[]=new String[DataBase.getListaLigadaFuncionario().tamanho()];
-        for (int i = 0; i < DataBase.getListaLigadaFuncionario().tamanho(); i++) {
-            funcionarioModelo = (FuncionarioModelo) DataBase.getListaLigadaFuncionario().pega(i);
-            nomes[i] = funcionarioModelo.getNome();
-            residencia[i] = funcionarioModelo.getResidencia();
-        }
-        MyListAdapter adapterList =new MyListAdapter(getActivity(), nomes, residencia,imgid);
+        carregarDados();
+        ControllerFuncionario controllerFuncionario=new ControllerFuncionario();
+        controllerFuncionario.visualizarFuncionarios();
         list = (ListView) view.findViewById(R.id.list);
-        //list=(ListView)findViewById(R.id.list);
         list.setAdapter(adapterList);
-
-        // autocomplete
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.select_dialog_item,language);
-        //Getting the instance of AutoCompleteTextView
+        pegaNomes();
         actv =  (AutoCompleteTextView) view.findViewById(R.id.autoCompleteTextView);
         actv.setThreshold(1);//will start working from first character
         actv.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
@@ -96,8 +122,10 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
         actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object item = parent.getItemAtPosition(position);
-                showToast(""+item);
+                String item = (String) parent.getItemAtPosition(position);
+                pegaFuncionario(item);
+                list.setAdapter(null);
+                list.setAdapter(adapterList);
             }
         });
        // actv.setOnItemSelectedListener(new View.OnFocusChangeListener());
@@ -112,7 +140,7 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
         //Delete a Funcionario
         AdapterView.OnItemClickListener itemClickListener  = new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 // Getting the Country TextView
                 new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
                         .setTitleText("Tem Certeza?")
@@ -122,7 +150,16 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
                             @Override
                             public void onClick(SweetAlertDialog sDialog) {
                                 sDialog.dismissWithAnimation();
-                                showToast("Apagado");
+                                ControllerFuncionario controllerFuncionario=new ControllerFuncionario();
+                                controllerFuncionario.apagarFuncionario(position+1);
+                                showToast("Apagado com sucesso");
+                                list.setAdapter(null);
+                                carregarDados();
+                                list.setAdapter(adapterList);
+                                actv.setAdapter(null);
+                                pegaNomes();
+                                actv.setAdapter(adapter);
+
                             }
                         })
                         .setCancelButton("Cancelar", new SweetAlertDialog.OnSweetClickListener() {
@@ -164,6 +201,9 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(getContext(),cargo[position] , Toast.LENGTH_LONG).show();
+        pegarCategoria(cargo[position]);
+        list.setAdapter(null);
+        list.setAdapter(adapterList);
     }
 
     @Override

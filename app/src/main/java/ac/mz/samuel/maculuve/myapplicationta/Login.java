@@ -22,12 +22,12 @@ public class Login extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Home()).commit();
             }
         });
-       /* btnLigin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Veiculo()).commit();
-                //
-            }
-        });*/
+//        btnLigin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Veiculo()).commit();
+//                //
+//            }
+//        });
     }
 }

@@ -79,10 +79,11 @@ public class ListaLigadaFuncionario implements InterfaceGeral,Serializable {
         } else if (posicao == this.totalElem) {
             this.removeFim();
         } else {
-            NoFuncionario anterior = this.pegaNo(posicao-1);
+            NoFuncionario anterior = this.pegaNo(posicao-2);
             NoFuncionario atual = anterior.getProximo();
             NoFuncionario proximo = atual.getProximo();
             anterior.setProximo(proximo);
+            // proximo.setAnterior(anterior);
             this.totalElem--;
         }
 
@@ -90,7 +91,14 @@ public class ListaLigadaFuncionario implements InterfaceGeral,Serializable {
 
     @Override
     public void removeFim() {
-
+        if (this.totalElem == 1) {
+            this.removeInicio();
+        } else {
+            NoFuncionario anterior = pegaNo(this.totalElem-1);
+            anterior.setProximo(null);
+            this.ultimo = anterior;
+            this.totalElem--;
+        }
     }
 
     @Override

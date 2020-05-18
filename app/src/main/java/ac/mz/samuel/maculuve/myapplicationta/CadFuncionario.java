@@ -23,17 +23,13 @@ import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.Funcionar
 import ac.mz.samuel.maculuve.myapplicationta.Models.Veiculo;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CadFuncionario#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class CadFuncionario extends Fragment {
     private Button btnCadastrar;
     DatePickerDialog picker;
     private TextView txtData,txtCategoria,txtResidencia,txtTelefone,txtNome;
     private Spinner spCategoria,spVeiculo;
-    String[] categoria ={"","Cobrador","Mororista"};
+    String[] categoria ={"","Cobrador","Motorista"};
     String[] veiculo ={"","Cobrador","Mororista"};
 
     private void _instanciar(){
@@ -84,9 +80,11 @@ public class CadFuncionario extends Fragment {
                     String nome=  txtNome.getText().toString();
                     String residencia= txtResidencia.getText().toString();
                     String telefone=  txtTelefone.getText().toString();
+                    String categoria=spCategoria.getSelectedItem().toString();
+                    Date dataNascimento= new Date();
                     ControllerFuncionario funcionario=new ControllerFuncionario();
-                    funcionario.registarFuncionario(nome,new Date(),residencia,telefone,new Veiculo());
-                    Toast.makeText(getContext(),"Funcionario Cadastrado com sucesso",Toast.LENGTH_LONG).show();
+                    funcionario.registarFuncionario(nome,dataNascimento,residencia,telefone,new Veiculo(),categoria);
+                    Toast.makeText(getContext(),"Funcionario Cadastrado com sucesso",Toast.LENGTH_SHORT).show();
                     txtNome.setText(null);
                     txtResidencia.setText(null);
                     txtTelefone.setText(null);
@@ -95,6 +93,8 @@ public class CadFuncionario extends Fragment {
                 }catch (Exception ex) {
                     System.out.println("Erro" +ex.getMessage());
                 }
+                ControllerFuncionario controllerFuncionario=new ControllerFuncionario();
+                controllerFuncionario.visualizarFuncionarios();
             }
         });
 

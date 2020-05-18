@@ -2,51 +2,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".CadFuncionario"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="30dp"
-    >
+    tools:context=".CadFuncionario">
+
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/ic_account_circle_black_24dp"
+        android:layout_width="351dp"
+        android:layout_height="141dp"
         android:padding="20dp"
-        />
+        android:src="@drawable/ic_account_circle_black_24dp" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/colorPrimary"
-        />
+        android:textColorHint="@color/colorPrimary" />
+
     <EditText
         android:id="@+id/txtNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome Completo"
         android:ems="10"
+        android:hint="Nome Completo"
         android:inputType="text"
-        android:textSize="22sp"
-        >
-    </EditText>
+        android:textSize="22sp"></EditText>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusableInTouchMode="true"
         android:layout_marginTop="5dp"
-        android:textColorHint="@color/colorPrimary"
-        />
+        android:focusableInTouchMode="true"
+        android:textColorHint="@color/colorPrimary" />
+
     <EditText
         android:id="@+id/txtData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Data de Nascimento"
         android:ems="10"
+        android:hint="Data de Nascimento"
         android:inputType="date"
-        android:textSize="22sp"
-        >
-    </EditText>
+        android:textSize="22sp"></EditText>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -54,8 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/colorPrimary"
-        />
+        android:textColorHint="@color/colorPrimary" />
 
     <Spinner
         android:id="@+id/spCategoria"
@@ -63,53 +58,49 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:hint="Residência"
-        android:textSize="100dp"
-        />
+        android:textSize="100dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/colorPrimary"
-        />
+        android:textColorHint="@color/colorPrimary" />
+
     <EditText
         android:id="@+id/txtResidencia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Residência"
         android:layout_marginTop="5dp"
         android:ems="10"
+        android:hint="Residência"
         android:inputType="text"
-        android:textSize="22sp"
-        >
-    </EditText>
+        android:textSize="22sp"></EditText>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/colorPrimary"
-        />
+        android:textColorHint="@color/colorPrimary" />
+
     <EditText
         android:id="@+id/txtTelefone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Telefone"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="7dp"
         android:ems="10"
+        android:hint="Telefone"
         android:inputType="number"
-        android:textSize="22sp"
-        >
-    </EditText>
+        android:textSize="22sp"></EditText>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/colorPrimary"
-        />
+        android:textColorHint="@color/colorPrimary" />
 
     <Spinner
         android:id="@+id/spVeiculo"
@@ -117,17 +108,17 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:hint="Residência"
-        android:textSize="100dp"
-        />
+        android:textSize="100dp" />
+
     <Button
         android:id="@+id/saveFun"
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_rounded"
         android:text="Guardar"
-        android:textSize="22sp"
         android:textColor="#ffff"
-        android:background="@drawable/button_rounded" />
+        android:textSize="22sp" />
 
 
 </LinearLayout>
