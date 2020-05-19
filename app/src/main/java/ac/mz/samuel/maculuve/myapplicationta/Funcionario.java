@@ -42,6 +42,8 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
             R.drawable.ic_account_circle_black_24dp,
     };
     String[] cargo ={"","Cobrador","Motorista"};
+    private ListView mListView;
+    private ArrayAdapter aAdapter;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +102,7 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
         adapterList=new MyListAdapter(getActivity(), nomes, residencia,imgid);
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
@@ -107,11 +110,12 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
         cadFuncionario = view.findViewById(R.id.cadFuncionario);
         imgPesquisar = view.findViewById(R.id.imgPesquisar);
         spCargo = view.findViewById(R.id.spCargo);
-        editFuncionario = view.findViewById(R.id.editFuncionario);
+       // editFuncionario = view.findViewById(R.id.editFuncionario);
 
         carregarDados();
-        ControllerFuncionario controllerFuncionario=new ControllerFuncionario();
+        final ControllerFuncionario controllerFuncionario=new ControllerFuncionario();
         controllerFuncionario.visualizarFuncionarios();
+
         list = (ListView) view.findViewById(R.id.list);
         list.setAdapter(adapterList);
         pegaNomes();
@@ -139,22 +143,21 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
             }
         });
         //open edit
-        editFuncionario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new EditFuncionario()).commit();
-            }
-        });
+//        editFuncionario.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new EditFuncionario()).commit();
+//            }
+//        });
         //Delete a Funcionario
         AdapterView.OnItemClickListener itemClickListener  = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 // Getting the Country TextView
                 new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Tem Certeza?")
-                        .setContentText("Não será possível recuperar este arquivo\n!")
-                        .setConfirmText("Sim Apagar!")
+                        .setTitleText("Escolha a acção")
+                        .setConfirmText("Apagar")
                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                             @Override
                             public void onClick(SweetAlertDialog sDialog) {
@@ -171,11 +174,14 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
 
                             }
                         })
-                        .setCancelButton("Cancelar", new SweetAlertDialog.OnSweetClickListener() {
+                        .setCancelButton("Editar", new SweetAlertDialog.OnSweetClickListener() {
                             @Override
                             public void onClick(SweetAlertDialog sDialog) {
                                 sDialog.dismissWithAnimation();
-                                showToast("Cancelar");
+                                ControllerFuncionario controllerFuncionario1=new ControllerFuncionario();
+                                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                        new EditFuncionario(controllerFuncionario1.popularFuncionario(position+1))).commit();
+
                             }
                         })
                         .show();

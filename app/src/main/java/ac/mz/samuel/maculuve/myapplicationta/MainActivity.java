@@ -34,8 +34,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         if (savedInstanceState == null) {
+
            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Home()).commit();
 
+
+           getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new CadFuncionario()).commit();
+            //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new CadRota()).commit();
+         //   navigationView.setCheckedItem(R.id.nav_message);
+
+//            Intent intent = new Intent(getApplication(),Login.class);
+//            startActivity(intent);
         }
 
     }

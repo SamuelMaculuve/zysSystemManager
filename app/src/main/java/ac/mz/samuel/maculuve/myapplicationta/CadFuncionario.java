@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -80,10 +81,13 @@ public class CadFuncionario extends Fragment {
                     String nome=  txtNome.getText().toString();
                     String residencia= txtResidencia.getText().toString();
                     String telefone=  txtTelefone.getText().toString();
+
                     String categoria=spCategoria.getSelectedItem().toString();
-                    Date dataNascimento= new Date();
+                   // Date dataNascimento= new Date();
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    Date dataNascimento = formato.parse(txtData.getText().toString());
                     ControllerFuncionario funcionario=new ControllerFuncionario();
-                    funcionario.registarFuncionario(nome,dataNascimento,residencia,telefone,new Veiculo(),categoria);
+                    funcionario.registarFuncionario(nome,categoria,dataNascimento,residencia,telefone,new Veiculo(),"");
                     Toast.makeText(getContext(),"Funcionario Cadastrado com sucesso",Toast.LENGTH_SHORT).show();
                     txtNome.setText(null);
                     txtResidencia.setText(null);

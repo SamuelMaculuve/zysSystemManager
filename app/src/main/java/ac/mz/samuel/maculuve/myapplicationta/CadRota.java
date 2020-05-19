@@ -4,8 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
+import ac.mz.samuel.maculuve.myapplicationta.Controladores.Rota.ControllerRota;
 
 
 /**
@@ -53,11 +58,38 @@ public class CadRota extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    private TextView txtTerminal1,txtTerminal2,txtVia,txtTempo;
+    private Button btnCadastrar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cad_rota, container, false);
+        View view=inflater.inflate(R.layout.fragment_cad_rota, container, false);
+        btnCadastrar=view.findViewById(R.id.saveRota);
+        txtTerminal1=view.findViewById(R.id.txtTerminal1);
+        txtTerminal2=view.findViewById(R.id.txtTerminal2);
+        txtVia=view.findViewById(R.id.txtVia);
+        txtTempo=view.findViewById(R.id.txtTempo);
+
+        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String terminal1=txtTerminal1.getText().toString();
+                String terminal2=txtTerminal2.getText().toString();
+                String via=txtVia.getText().toString();
+                double tempo=Double.parseDouble(txtTempo.getText().toString());
+
+                ControllerRota controllerRota=new ControllerRota();
+                controllerRota.registarRota(terminal1,terminal2,via,tempo);
+                Toast.makeText(getContext(),"Rota Cadastrada com sucesso",Toast.LENGTH_SHORT).show();
+                txtVia.setText(null);
+                txtTerminal1.setText(null);
+                txtTerminal2.setText(null);
+                txtTempo.setText(null);
+            }
+        });
+
+        return view;
     }
 }

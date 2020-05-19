@@ -21,15 +21,15 @@
         android:focusableInTouchMode="true"
         android:textColorHint="@color/colorPrimary"
         />
+
     <EditText
+        android:id="@+id/txtTerminal1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Full Name"
         android:ems="10"
+        android:hint="Terminal 1"
         android:inputType="text"
-        android:textSize="22sp"
-        >
-    </EditText>
+        android:textSize="22sp"></EditText>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -38,15 +38,15 @@
         android:layout_marginTop="5dp"
         android:textColorHint="@color/colorPrimary"
         />
+
     <EditText
+        android:id="@+id/txtTerminal2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter User Name"
         android:ems="10"
+        android:hint="Terminal 2"
         android:inputType="text"
-        android:textSize="22sp"
-        >
-    </EditText>
+        android:textSize="22sp"></EditText>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -55,16 +55,16 @@
         android:focusableInTouchMode="true"
         android:textColorHint="@color/colorPrimary"
         />
+
     <EditText
+        android:id="@+id/txtVia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Full Name"
         android:layout_marginTop="5dp"
         android:ems="10"
+        android:hint="Via"
         android:inputType="text"
-        android:textSize="22sp"
-        >
-    </EditText>
+        android:textSize="22sp"></EditText>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,37 +72,29 @@
         android:focusableInTouchMode="true"
         android:textColorHint="@color/colorPrimary"
         />
+
     <EditText
+        android:id="@+id/txtTempo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Full Name"
         android:layout_marginTop="5dp"
         android:ems="10"
+        android:hint="Tempo estimado em minutos"
         android:inputType="text"
-        android:textSize="22sp"
-        >
-    </EditText>
+        android:textSize="22sp"></EditText>
+
     <Button
         android:id="@+id/saveRota"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Editar"
-        android:textSize="22sp"
+        android:background="@drawable/button_rounded"
+        android:text="Alterar"
         android:textColor="#ffff"
-        android:background="@drawable/button_rounded" />
+        android:textSize="22sp" />
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        >
-        <com.getbase.floatingactionbutton.FloatingActionsMenu
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd='true'
-            android:layout_alignParentBottom='true'
-            app:fab_addButtonColorNormal="@color/colorPrimary"
-            app:fab_addButtonColorPressed="@color/colorAccent"
-            />
-    </RelativeLayout>
+        />
 
 
 

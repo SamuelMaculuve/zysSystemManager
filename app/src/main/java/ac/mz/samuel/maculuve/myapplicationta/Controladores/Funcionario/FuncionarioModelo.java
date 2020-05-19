@@ -14,14 +14,16 @@ public class FuncionarioModelo implements Serializable {
     private String telefone;
     private Veiculo veiculo;
     private String categoria;
+    private String cargo;
 
     public FuncionarioModelo() {
         super();
     }
 
-    public FuncionarioModelo(int id, String nome, Date dataNascimento, String residencia, String telefone, Veiculo veiculo, String categoria) {
+    public FuncionarioModelo(int id, String nome,String cargo, Date dataNascimento, String residencia, String telefone, Veiculo veiculo, String categoria) {
         this.id = id;
         this.nome = nome;
+        this.cargo=cargo;
         this.dataNascimento = dataNascimento;
         this.residencia = residencia;
         this.telefone = telefone;
@@ -83,6 +85,14 @@ public class FuncionarioModelo implements Serializable {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
     @Override
