@@ -102,7 +102,6 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
         adapterList=new MyListAdapter(getActivity(), nomes, residencia,imgid);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
@@ -110,7 +109,7 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
         cadFuncionario = view.findViewById(R.id.cadFuncionario);
         imgPesquisar = view.findViewById(R.id.imgPesquisar);
         spCargo = view.findViewById(R.id.spCargo);
-       // editFuncionario = view.findViewById(R.id.editFuncionario);
+      //  editFuncionario = view.findViewById(R.id.editFuncionario);
 
         carregarDados();
         final ControllerFuncionario controllerFuncionario=new ControllerFuncionario();

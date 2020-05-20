@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:hint="Apelido" />
+                android:hint="Rota" />
         </RelativeLayout>
 
 
@@ -92,7 +92,7 @@
             app:fab_labelStyle="@style/customFab">
 
             <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/cadRota"
+                android:id="@+id/cadVeiculo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:fab_addButtonColorNormal="@color/white"
@@ -100,15 +100,6 @@
                 app:fab_icon="@drawable/ic_add_black_24dp"
                 app:fab_size="mini"
                 app:fab_title="Registar Rota" />
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/editRota"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:fab_addButtonColorNormal="@color/white"
-                app:fab_addButtonColorPressed="@color/colorAccent"
-                app:fab_icon="@drawable/ic_add_black_24dp"
-                app:fab_size="mini"
-                app:fab_title="Editar Rota" />
 
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
     </LinearLayout>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditVeiculo"
+    tools:context=".CadVeiculo"
     android:orientation="vertical"
     android:padding="30dp"
     >
@@ -21,7 +21,17 @@
         android:textColorHint="@color/colorPrimary"
         />
     <EditText
-        android:id="@+id/matricula"
+        android:id="@+id/txtNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="22sp"
+        >
+    </EditText>
+    <EditText
+        android:id="@+id/txtMatricula"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Matricula"
@@ -37,17 +47,15 @@
         android:focusableInTouchMode="true"
         android:layout_marginTop="5dp"
         android:textColorHint="@color/colorPrimary"
-        />
-    <EditText
-        android:id="@+id/rota"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Rota"
-        android:ems="10"
-        android:inputType="date"
-        android:textSize="22sp"
         >
-    </EditText>
+
+        <Spinner
+            android:id="@+id/spRota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="100dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -57,7 +65,7 @@
         android:textColorHint="@color/colorPrimary"
         />
     <EditText
-        android:id="@+id/lotacao"
+        android:id="@+id/txtLotacao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Lotação"
@@ -75,7 +83,7 @@
         android:textColorHint="@color/colorPrimary"
         />
     <EditText
-        android:id="@+id/nPasageiros"
+        android:id="@+id/txtNrPassageiros"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nr de passageiros"
@@ -91,7 +99,7 @@
         android:id="@+id/saveVeiculo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Editar"
+        android:text="Alterar"
         android:textSize="22sp"
         android:textColor="#ffff"
         android:background="@drawable/button_rounded" />

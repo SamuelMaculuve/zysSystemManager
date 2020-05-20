@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new CadRota()).commit();
          //   navigationView.setCheckedItem(R.id.nav_message);
 
-//            Intent intent = new Intent(getApplication(),Login.class);
+//           Intent intent = new Intent(getApplication(),Login.class);
 //            startActivity(intent);
         }
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.rota:
+            case R.id.txtRota:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Rota()).commit();
                 break;

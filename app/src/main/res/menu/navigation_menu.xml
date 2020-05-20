@@ -7,7 +7,7 @@ tools:showIn="navigation_view">
         android:icon="@drawable/ic_work_black_24dp"
         android:title="Funcionario" />
 
-    <item android:id="@+id/rota"
+    <item android:id="@+id/txtRota"
         android:icon="@drawable/ic_rounded_corner_black_24dp"
         android:title="Rota" />
 

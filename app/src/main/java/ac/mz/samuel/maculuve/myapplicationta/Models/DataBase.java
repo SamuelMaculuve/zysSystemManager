@@ -5,28 +5,33 @@ import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.Funcionar
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.ListaLigadaFuncionario;
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Rota.ListaLigadaRota;
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Rota.RotaModelo;
+import ac.mz.samuel.maculuve.myapplicationta.Controladores.Veiculo.ListaLigadaVeiculo;
+import ac.mz.samuel.maculuve.myapplicationta.Controladores.Veiculo.VeiculoModelo;
 
 public class DataBase {
     public static ListaLigadaFuncionario listaLigadaFuncionario = new ListaLigadaFuncionario();
     public static ListaLigadaRota listaLigadaRota=new ListaLigadaRota();
-    public static ListaLigadaFuncionario getListaLigadaFuncionario() {
-        return listaLigadaFuncionario;
-    }
+    public static ListaLigadaVeiculo listaLigadaVeiculo=new ListaLigadaVeiculo();
+
+    public static ListaLigadaFuncionario getListaLigadaFuncionario() { return listaLigadaFuncionario; }
     public static void setListaLigadaFuncionario(FuncionarioModelo funcionarioModelo) {
         listaLigadaFuncionario.adicionaFim(funcionarioModelo);
     }
-    public static void actualizarFuncionarios(FuncionarioModelo funcionarioModelo, int i){
-        listaLigadaFuncionario.actualizar(i,funcionarioModelo, getListaLigadaFuncionario());
-    }
+
     public static ListaLigadaRota getListaLigadaRota() {
         return listaLigadaRota;
     }
     public static void setListaLigadaRota(RotaModelo rotaModelo) {
         listaLigadaRota.adicionaFim(rotaModelo);
     }
-    public static void actualizarRotas(RotaModelo rotaModelo, int i){
-        listaLigadaRota.actualizar(i,rotaModelo, getListaLigadaRota());
+
+    public static ListaLigadaVeiculo getListaLigadaVeiculo() {
+        return listaLigadaVeiculo;
     }
+    public static void setListaLigadaVeiculo(VeiculoModelo veiculoModelo) {
+        listaLigadaRota.adicionaFim(veiculoModelo);
+    }
+
 
 
 
