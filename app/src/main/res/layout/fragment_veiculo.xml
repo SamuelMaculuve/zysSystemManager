@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:hint="Apelido" />
+                android:hint="Rota" />
         </RelativeLayout>
 
 
@@ -100,7 +100,7 @@
                 app:fab_addButtonColorPressed="@color/colorAccent"
                 app:fab_icon="@drawable/ic_add_black_24dp"
                 app:fab_size="mini"
-                app:fab_title="Registar Funcionario" />
+                app:fab_title="Registar Veiculo" />
             <com.getbase.floatingactionbutton.FloatingActionButton
                 android:id="@+id/editVeiculo"
                 android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
                 app:fab_addButtonColorPressed="@color/colorAccent"
                 app:fab_icon="@drawable/ic_add_black_24dp"
                 app:fab_size="mini"
-                app:fab_title="Registar Funcionario" />
+                app:fab_title="Editar Veiculo" />
 
 
         </com.getbase.floatingactionbutton.FloatingActionsMenu>

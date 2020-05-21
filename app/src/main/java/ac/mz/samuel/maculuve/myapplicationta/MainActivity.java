@@ -38,12 +38,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Home()).commit();
 
 
-           getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new CadFuncionario()).commit();
+
+         //  getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new CadFuncionario()).commit();
             //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new CadRota()).commit();
          //   navigationView.setCheckedItem(R.id.nav_message);
 
 //            Intent intent = new Intent(getApplication(),Login.class);
 //            startActivity(intent);
+
+           // Intent intent = new Intent(getApplication(),Login.class);
+            //startActivity(intent);
         }
 
     }
@@ -76,6 +80,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.mapa:
                 Intent intent = new Intent(getApplication(),MapsActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.ajuda:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Ajuda()).commit();
+                break;
+            case R.id.sobre:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Sobre()).commit();
                 break;
 
 

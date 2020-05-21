@@ -20,6 +20,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Home()).commit();
+                //Intent intent = new Intent(getApplication(),MainActivity.class);
+                //startActivity(intent);
             }
         });
 //        btnLigin.setOnClickListener(new View.OnClickListener() {

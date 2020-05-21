@@ -1,6 +1,7 @@
 package ac.mz.samuel.maculuve.myapplicationta;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +30,7 @@ public class Veiculo extends Fragment {
     Button btnGet;
     TextView tvw;
     ListView list;
+    ImageView imgPesquisar;
     private FloatingActionButton cadVeiculo,editVeiculo;
 
     String[] maintitle ={
@@ -67,6 +70,15 @@ public class Veiculo extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_veiculo, container, false);
         cadVeiculo = view.findViewById(R.id.cadVeiculo);
         editVeiculo = view.findViewById(R.id.editVeiculo);
+        imgPesquisar = view.findViewById(R.id.imgPesquisar);
+
+        imgPesquisar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),MapsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         editVeiculo.setOnClickListener(new View.OnClickListener() {
             @Override

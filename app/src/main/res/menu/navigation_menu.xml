@@ -20,11 +20,11 @@ tools:showIn="navigation_view">
 </group>
 <item android:title="Communicate">
     <menu>
-        <item android:id="@+id/nav_share"
+        <item android:id="@+id/sobre"
             android:icon="@drawable/ic_group_black_24dp"
             android:title="Sobre Nos"/>
 
-        <item android:id="@+id/nav_send"
+        <item android:id="@+id/ajuda"
             android:icon="@drawable/ic_settings_applications_black_24dp"
             android:title="Ajuda"/>
     </menu>
