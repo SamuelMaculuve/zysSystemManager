@@ -1,6 +1,8 @@
 package ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario;
 
-public class NoFuncionario {
+import java.io.Serializable;
+
+public class NoFuncionario implements Serializable {
 
     private Object elemento;
     private NoFuncionario proximo;

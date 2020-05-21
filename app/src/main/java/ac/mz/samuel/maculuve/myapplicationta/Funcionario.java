@@ -89,6 +89,7 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
     }
     public  void pegarCategoria(String categoria){
         adapterList=null;
+       // DataBase.lerFuncionarios(getContext());
         String nomes[]=new String[DataBase.getListaLigadaFuncionario().tamanho()];
         String residencia[]=new String[DataBase.getListaLigadaFuncionario().tamanho()];
         FuncionarioModelo funcionarioModelo;
@@ -102,7 +103,6 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
         adapterList=new MyListAdapter(getActivity(), nomes, residencia,imgid);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
@@ -110,7 +110,7 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
         cadFuncionario = view.findViewById(R.id.cadFuncionario);
         imgPesquisar = view.findViewById(R.id.imgPesquisar);
         spCargo = view.findViewById(R.id.spCargo);
-       // editFuncionario = view.findViewById(R.id.editFuncionario);
+      //  editFuncionario = view.findViewById(R.id.editFuncionario);
 
         carregarDados();
         final ControllerFuncionario controllerFuncionario=new ControllerFuncionario();
@@ -178,9 +178,10 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
                             @Override
                             public void onClick(SweetAlertDialog sDialog) {
                                 sDialog.dismissWithAnimation();
+                                DataBase.lerFuncionarios(getContext());
                                 ControllerFuncionario controllerFuncionario1=new ControllerFuncionario();
                                 getFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                                        new EditFuncionario(controllerFuncionario1.popularFuncionario(position+1))).commit();
+                                        new EditFuncionario(controllerFuncionario1.popularFuncionario(position+1,getContext()))).commit();
 
                             }
                         })

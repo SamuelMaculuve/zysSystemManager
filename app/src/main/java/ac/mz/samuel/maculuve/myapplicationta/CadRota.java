@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Rota.ControllerRota;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 /**
@@ -60,7 +62,6 @@ public class CadRota extends Fragment {
     }
     private TextView txtTerminal1,txtTerminal2,txtVia,txtTempo;
     private Button btnCadastrar;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,21 +73,34 @@ public class CadRota extends Fragment {
         txtVia=view.findViewById(R.id.txtVia);
         txtTempo=view.findViewById(R.id.txtTempo);
 
+
+
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String terminal1=txtTerminal1.getText().toString();
-                String terminal2=txtTerminal2.getText().toString();
-                String via=txtVia.getText().toString();
-                double tempo=Double.parseDouble(txtTempo.getText().toString());
+                final EditText lat = new EditText(getContext());
+                new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE)
+                        .setTitleText("Adicione a Latitude e a Longitude")
+                        .setConfirmText("Ok")
+                        .setCustomView(lat)
+                        .show();
+                try {
+                    String terminal1 = txtTerminal1.getText().toString();
+                    String terminal2 = txtTerminal2.getText().toString();
+                    String via = txtVia.getText().toString();
+                    double tempo = Double.parseDouble(txtTempo.getText().toString());
 
-                ControllerRota controllerRota=new ControllerRota();
-                controllerRota.registarRota(terminal1,terminal2,via,tempo);
-                Toast.makeText(getContext(),"Rota Cadastrada com sucesso",Toast.LENGTH_SHORT).show();
-                txtVia.setText(null);
-                txtTerminal1.setText(null);
-                txtTerminal2.setText(null);
-                txtTempo.setText(null);
+                    ControllerRota controllerRota = new ControllerRota();
+                    controllerRota.registarRota(terminal1, terminal2, via, tempo,getContext());
+                    Toast.makeText(getContext(), "Rota Cadastrada com sucesso", Toast.LENGTH_SHORT).show();
+                    txtVia.setText(null);
+                    txtTerminal1.setText(null);
+                    txtTerminal2.setText(null);
+                    txtTempo.setText(null);
+                }catch (Exception e){
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
 

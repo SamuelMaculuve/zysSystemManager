@@ -4,11 +4,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import ac.mz.samuel.maculuve.myapplicationta.Controladores.Rota.RotaModelo;
+import ac.mz.samuel.maculuve.myapplicationta.Controladores.Veiculo.ControllerVeiculo;
+import ac.mz.samuel.maculuve.myapplicationta.Models.DataBase;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
@@ -53,34 +59,57 @@ public class CadVeiculo extends Fragment {
         }
     }
 
+    private TextView txtMatricula,txtLotacao,txtNrPassageiros,txtNome;
+    private Button btnCadastrar;
+    private Spinner spRota;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        /*
-        * iew view = inflater.inflate(R.layout.fragment_rssitem_detail,
-    container, false);
-   Button button = (Button) view.findViewById(R.id.btn_conferma);
-   button.setOnClickListener(new OnClickListener()
-   {
-             @Override
-             public void onClick(View v)
-             {
-                // do something
-             }
-   });
-   return view;*/
-        View view =  inflater.inflate(R.layout.fragment_cad_veiculo, container, false);
 
-        btnSaveVeiculo = (Button) view.findViewById(R.id.saveVeiculo);
-        btnSaveVeiculo.setOnClickListener(new View.OnClickListener() {
+        View view =  inflater.inflate(R.layout.fragment_cad_veiculo, container, false);
+        txtMatricula=view.findViewById(R.id.txtMatricula);
+        txtLotacao=view.findViewById(R.id.txtLotacao);
+        btnCadastrar=view.findViewById(R.id.saveVeiculo);
+        txtNrPassageiros=view.findViewById(R.id.txtNrPassageiros);
+        txtNome=view.findViewById(R.id.txtNome);
+        spRota = view.findViewById(R.id.spRota);
+
+
+        DataBase.lerRotas(getContext());
+        String rotas[]=new String[DataBase.getListaLigadaRota().tamanho()];
+        RotaModelo rotaModelo;
+        for (int i=0;i<DataBase.getListaLigadaRota().tamanho();i++){
+                rotaModelo = (RotaModelo) DataBase.getListaLigadaRota().pega(i);
+                rotas[i] = rotaModelo.getTerminal1() + "/" + rotaModelo.getTerminal2();
+        }
+        ArrayAdapter<String> adapterRota = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,rotas);
+        adapterRota.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spRota.setAdapter(adapterRota);
+
+        btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "This is my Toast message!", Toast.LENGTH_LONG).show();
-                new SweetAlertDialog(getContext())
-                        .setTitleText("Here's a message!")
-                        .show();
+            public void onClick(View view) {
+
+                try {
+                    String nome = txtNome.getText().toString();
+                    String matricula = txtMatricula.getText().toString();
+                    String rota = spRota.getSelectedItem().toString();
+                    int lotacao = Integer.parseInt(txtLotacao.getText().toString());
+                    int nPassageiros = Integer.parseInt(txtNrPassageiros.getText().toString());
+                    ControllerVeiculo controllerVeiculo = new ControllerVeiculo();
+                    controllerVeiculo.registarVeiculo(nome, matricula, rota, lotacao, nPassageiros,getContext());
+                    Toast.makeText(getContext(), "Veiculo adicionado com sucesso", Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                    Toast.makeText(getContext(),"Erro "+ e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
+
+
+
+
+
 
         return view;
     }

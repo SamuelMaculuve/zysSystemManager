@@ -12,7 +12,7 @@ public class FuncionarioModelo implements Serializable {
     private Date dataNascimento;
     private String residencia;
     private String telefone;
-    private Veiculo veiculo;
+    private String veiculo;
     private String categoria;
     private String cargo;
 
@@ -20,7 +20,7 @@ public class FuncionarioModelo implements Serializable {
         super();
     }
 
-    public FuncionarioModelo(int id, String nome,String cargo, Date dataNascimento, String residencia, String telefone, Veiculo veiculo, String categoria) {
+    public FuncionarioModelo(int id, String nome,String cargo, Date dataNascimento, String residencia, String telefone, String veiculo, String categoria) {
         this.id = id;
         this.nome = nome;
         this.cargo=cargo;
@@ -30,6 +30,7 @@ public class FuncionarioModelo implements Serializable {
         this.veiculo = veiculo;
         this.categoria = categoria;
     }
+
 
     public String getNome() {
         return nome;
@@ -63,11 +64,11 @@ public class FuncionarioModelo implements Serializable {
         this.telefone = telefone;
     }
 
-    public Veiculo getVeiculo() {
+    public String getVeiculo() {
         return veiculo;
     }
 
-    public void setVeiculo(Veiculo veiculo) {
+    public void setVeiculo(String veiculo) {
         this.veiculo = veiculo;
     }
 

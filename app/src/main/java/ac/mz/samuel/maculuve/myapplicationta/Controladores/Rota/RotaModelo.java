@@ -1,6 +1,8 @@
 package ac.mz.samuel.maculuve.myapplicationta.Controladores.Rota;
 
-public class RotaModelo {
+import java.io.Serializable;
+
+public class RotaModelo implements Serializable {
 
     private int id;
     private  String terminal1;

@@ -17,8 +17,6 @@ import androidx.fragment.app.Fragment;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
-import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.ControllerFuncionario;
-import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.FuncionarioModelo;
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Rota.ControllerRota;
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Rota.RotaModelo;
 import ac.mz.samuel.maculuve.myapplicationta.Models.DataBase;
@@ -78,22 +76,21 @@ public class Rota extends Fragment implements AdapterView.OnItemSelectedListener
 
     public void carregarDados() {
         adapterList = null;
+        DataBase.lerRotas(getContext());
         String nomes[] = new String[DataBase.getListaLigadaRota().tamanho()];
         String vias[] = new String[DataBase.getListaLigadaRota().tamanho()];
         RotaModelo rotaModelo;
         for (int i = 0; i < DataBase.getListaLigadaRota().tamanho(); i++) {
             rotaModelo = (RotaModelo) DataBase.getListaLigadaRota().pega(i);
             nomes[i] = rotaModelo.getTerminal1() + "/" + rotaModelo.getTerminal2();
-            vias[i] = rotaModelo.getVia();
+            vias[i] = "Via: "+rotaModelo.getVia()+" | Tempo "+rotaModelo.getTempo()+" min";
         }
         adapterList = new MyListAdapter(getActivity(), nomes, vias, imgid);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_rota, container, false);
-        cadRota = view.findViewById(R.id.cadRota);
-        editRota = view.findViewById(R.id.editRota);
-
+        cadRota = view.findViewById(R.id.cadVeiculo);
 
         cadRota.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,8 +129,9 @@ public class Rota extends Fragment implements AdapterView.OnItemSelectedListener
                             @Override
                             public void onClick(SweetAlertDialog sDialog) {
                                 sDialog.dismissWithAnimation();
+                                try {
                                 ControllerRota controllerRota = new ControllerRota();
-                                controllerRota.apagarRota(position + 1);
+                                controllerRota.apagarRota(position + 1, getContext());
                                 showToast("Apagado com sucesso");
                                 list.setAdapter(null);
                                 carregarDados();
@@ -141,6 +139,9 @@ public class Rota extends Fragment implements AdapterView.OnItemSelectedListener
                                 actv.setAdapter(null);
                                 pegaNomes();
                                 actv.setAdapter(adapter);
+                            }catch (Exception e ){
+                                    showToast("Erro ao apagar Rota, "+e.getMessage());
+                                }
 
 
                             }

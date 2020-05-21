@@ -21,7 +21,8 @@ import java.util.Date;
 
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.ControllerFuncionario;
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.FuncionarioModelo;
-import ac.mz.samuel.maculuve.myapplicationta.Models.Veiculo;
+import ac.mz.samuel.maculuve.myapplicationta.Controladores.Veiculo.VeiculoModelo;
+import ac.mz.samuel.maculuve.myapplicationta.Models.DataBase;
 
 
 
@@ -70,9 +71,17 @@ public class CadFuncionario extends Fragment {
         spCategoria.setAdapter(adapterCargo);
        // veiculo
 
-        ArrayAdapter<String> adapterVeiculo = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,veiculo);
+        DataBase.lerVeiculos(getContext());
+        String veiculos[]=new String[DataBase.getListaLigadaVeiculo().tamanho()];
+        VeiculoModelo veiculoModelo;
+        for (int i=0;i<DataBase.getListaLigadaVeiculo().tamanho();i++){
+            veiculoModelo=(VeiculoModelo) DataBase.getListaLigadaVeiculo().pega(i);
+            veiculos[i]=veiculoModelo.getNome();
+        }
+
+        ArrayAdapter<String> adapterVeiculo = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,veiculos);
         adapterVeiculo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spCategoria.setAdapter(adapterVeiculo);
+        spVeiculo.setAdapter(adapterVeiculo);
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,13 +90,13 @@ public class CadFuncionario extends Fragment {
                     String nome=  txtNome.getText().toString();
                     String residencia= txtResidencia.getText().toString();
                     String telefone=  txtTelefone.getText().toString();
-
+                    String veiculo=spVeiculo.getSelectedItem().toString();
                     String categoria=spCategoria.getSelectedItem().toString();
                    // Date dataNascimento= new Date();
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     Date dataNascimento = formato.parse(txtData.getText().toString());
                     ControllerFuncionario funcionario=new ControllerFuncionario();
-                    funcionario.registarFuncionario(nome,categoria,dataNascimento,residencia,telefone,new Veiculo(),"");
+                    funcionario.registarFuncionario(nome,categoria,dataNascimento,residencia,telefone,veiculo,"",view.getContext());
                     Toast.makeText(getContext(),"Funcionario Cadastrado com sucesso",Toast.LENGTH_SHORT).show();
                     txtNome.setText(null);
                     txtResidencia.setText(null);

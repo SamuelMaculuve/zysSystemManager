@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Veiculo"
+    tools:context=".Rota"
     android:orientation="vertical"
     android:padding="30dp"
     >
@@ -38,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+
                 android:hint="Rota" />
         </RelativeLayout>
 
@@ -66,14 +67,14 @@
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content" >
         </ListView>
-
         <View
-            android:id="@+id/divider2"
+            android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="?android:attr/listDivider" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -81,7 +82,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:orientation="horizontal">
-
         <com.getbase.floatingactionbutton.FloatingActionsMenu
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -110,10 +110,10 @@
                 app:fab_icon="@drawable/ic_add_black_24dp"
                 app:fab_size="mini"
                 app:fab_title="Editar Veiculo" />
-
-
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
     </LinearLayout>
+
+
 
 
 </LinearLayout>

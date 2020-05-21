@@ -7,13 +7,19 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.ControllerFuncionario;
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario.FuncionarioModelo;
+import ac.mz.samuel.maculuve.myapplicationta.Controladores.Veiculo.VeiculoModelo;
+import ac.mz.samuel.maculuve.myapplicationta.Models.DataBase;
 
 
 /**
@@ -32,10 +38,11 @@ public class EditFuncionario extends Fragment {
     private String mParam2;
     private TextView txtData,txtCategoria,txtResidencia,txtTelefone,txtNome;
     private Spinner spCategoria,spVeiculo;
+    private Button btnAlterar;
 
-    static FuncionarioModelo funcionario = null;
-    public EditFuncionario(FuncionarioModelo funcionarioModelo) {
-        funcionario=funcionarioModelo;
+    static FuncionarioModelo funcionarioModelo = null;
+    public EditFuncionario(FuncionarioModelo funcionario) {
+        funcionarioModelo=funcionario;
     }
 
     /**
@@ -49,7 +56,7 @@ public class EditFuncionario extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static EditFuncionario newInstance(String param1, String param2) {
 
-        EditFuncionario fragment = new EditFuncionario(funcionario);
+        EditFuncionario fragment = new EditFuncionario(funcionarioModelo);
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -79,12 +86,54 @@ public class EditFuncionario extends Fragment {
         txtData=view.findViewById(R.id.txtData);
         spCategoria = view.findViewById(R.id.spCategoria);
         spVeiculo = view.findViewById(R.id.spVeiculo);
+        btnAlterar=view.findViewById(R.id.saveFun);
 
-        txtNome.setText(funcionario.getNome());
+        txtNome.setText(funcionarioModelo.getNome());
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        txtData.setText(formato.format(funcionario.getDataNascimento()));
-        txtResidencia.setText(funcionario.getResidencia());
-        txtTelefone.setText(funcionario.getTelefone());
+        txtData.setText(formato.format(funcionarioModelo.getDataNascimento()));
+        txtResidencia.setText(funcionarioModelo.getResidencia());
+        txtTelefone.setText(funcionarioModelo.getTelefone());
+
+        String veiculos[]=new String[1+ DataBase.getListaLigadaVeiculo().tamanho()];
+        veiculos[0]="-Escolha a rota-";
+        VeiculoModelo veiculoModelo;
+        for (int i=0;i<DataBase.getListaLigadaVeiculo().tamanho();i++){
+            veiculoModelo=(VeiculoModelo) DataBase.getListaLigadaVeiculo().pega(i);
+            veiculos[i]=veiculoModelo.getNome();
+        }
+
+        ArrayAdapter<String> adapterVeiculo = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,veiculos);
+        adapterVeiculo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spVeiculo.setAdapter(adapterVeiculo);
+
+        btnAlterar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    String nome=  txtNome.getText().toString();
+                    String residencia= txtResidencia.getText().toString();
+                    String telefone=  txtTelefone.getText().toString();
+                    String veiculo=spVeiculo.getSelectedItem().toString();
+                    String categoria=spCategoria.getSelectedItem().toString();
+                    // Date dataNascimento= new Date();
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    Date dataNascimento = formato.parse(txtData.getText().toString());
+                    ControllerFuncionario funcionario=new ControllerFuncionario();
+                    funcionario.actualizarFuncionario(funcionarioModelo.getId(),nome,categoria,dataNascimento,residencia,telefone,veiculo,"",getContext());
+                    Toast.makeText(getContext(),"Funcionario Actualizado com sucesso",Toast.LENGTH_SHORT).show();
+                    txtNome.setText(null);
+                    txtResidencia.setText(null);
+                    txtTelefone.setText(null);
+                    txtCategoria.setText(null);
+                    txtData.setText(null);
+                }catch (Exception ex) {
+                    System.out.println("Erro" +ex.getMessage());
+                }
+
+            }
+        });
+
+
 
 
         return view;
