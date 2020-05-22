@@ -1,7 +1,9 @@
 package ac.mz.samuel.maculuve.myapplicationta.Controladores.Rota;
 
 
-public class NoRota {
+import java.io.Serializable;
+
+public class NoRota implements Serializable {
     private Object elemento;
     private NoRota proximo;
 

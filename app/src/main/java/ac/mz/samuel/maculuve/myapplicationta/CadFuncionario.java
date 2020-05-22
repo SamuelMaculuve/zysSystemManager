@@ -73,8 +73,8 @@ public class CadFuncionario extends Fragment {
         spCategoria.setAdapter(adapterCargo);
        // veiculo
 
-        String veiculos[]=new String[1+ DataBase.getListaLigadaVeiculo().tamanho()];
-        veiculos[0]="-Escolha a rota-";
+        DataBase.lerVeiculos(getContext());
+        String veiculos[]=new String[DataBase.getListaLigadaVeiculo().tamanho()];
         VeiculoModelo veiculoModelo;
         for (int i=0;i<DataBase.getListaLigadaVeiculo().tamanho();i++){
             veiculoModelo=(VeiculoModelo) DataBase.getListaLigadaVeiculo().pega(i);
@@ -98,7 +98,7 @@ public class CadFuncionario extends Fragment {
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     Date dataNascimento = formato.parse(txtData.getText().toString());
                     ControllerFuncionario funcionario=new ControllerFuncionario();
-                    funcionario.registarFuncionario(nome,categoria,dataNascimento,residencia,telefone,veiculo,"");
+                    funcionario.registarFuncionario(nome,categoria,dataNascimento,residencia,telefone,veiculo,"",view.getContext());
                     Toast.makeText(getContext(),"Funcionario Cadastrado com sucesso",Toast.LENGTH_SHORT).show();
                     txtNome.setText(null);
                     txtResidencia.setText(null);

@@ -74,13 +74,17 @@ public class CadVeiculo extends Fragment {
         txtNome=view.findViewById(R.id.txtNome);
         spRota = view.findViewById(R.id.spRota);
 
-        String rotas[]=new String[1+DataBase.getListaLigadaRota().tamanho()];
-        rotas[0]="_Escolha a rota_";
+
+        DataBase.lerRotas(getContext());
+        String rotas[]=new String[DataBase.getListaLigadaRota().tamanho()];
         RotaModelo rotaModelo;
         for (int i=0;i<DataBase.getListaLigadaRota().tamanho();i++){
-            rotaModelo=(RotaModelo)DataBase.getListaLigadaRota().pega(i);
-            rotas[i]=rotaModelo.getTerminal1()+"/"+rotaModelo.getTerminal2();
+                rotaModelo = (RotaModelo) DataBase.getListaLigadaRota().pega(i);
+                rotas[i] = rotaModelo.getTerminal1() + "/" + rotaModelo.getTerminal2();
         }
+        ArrayAdapter<String> adapterRota = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,rotas);
+        adapterRota.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spRota.setAdapter(adapterRota);
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +97,7 @@ public class CadVeiculo extends Fragment {
                     int lotacao = Integer.parseInt(txtLotacao.getText().toString());
                     int nPassageiros = Integer.parseInt(txtNrPassageiros.getText().toString());
                     ControllerVeiculo controllerVeiculo = new ControllerVeiculo();
-                    controllerVeiculo.registarVeiculo(nome, matricula, rota, lotacao, nPassageiros);
+                    controllerVeiculo.registarVeiculo(nome, matricula, rota, lotacao, nPassageiros,getContext());
                     Toast.makeText(getContext(), "Veiculo adicionado com sucesso", Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
                     Toast.makeText(getContext(),"Erro "+ e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -102,9 +106,7 @@ public class CadVeiculo extends Fragment {
         });
 
 
-        ArrayAdapter<String> adapterRota = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,rotas);
-        adapterRota.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spRota.setAdapter(adapterRota);
+
 
 
 

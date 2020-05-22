@@ -41,8 +41,8 @@ public class EditFuncionario extends Fragment {
     private Button btnAlterar;
 
     static FuncionarioModelo funcionarioModelo = null;
-    public EditFuncionario(FuncionarioModelo funcionarioModelo) {
-        funcionarioModelo=funcionarioModelo;
+    public EditFuncionario(FuncionarioModelo funcionario) {
+        funcionarioModelo=funcionario;
     }
 
     /**
@@ -86,7 +86,7 @@ public class EditFuncionario extends Fragment {
         txtData=view.findViewById(R.id.txtData);
         spCategoria = view.findViewById(R.id.spCategoria);
         spVeiculo = view.findViewById(R.id.spVeiculo);
-        btnAlterar=view.findViewById(R.id.saveVeiculo);
+        btnAlterar=view.findViewById(R.id.saveFun);
 
         txtNome.setText(funcionarioModelo.getNome());
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -119,7 +119,7 @@ public class EditFuncionario extends Fragment {
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     Date dataNascimento = formato.parse(txtData.getText().toString());
                     ControllerFuncionario funcionario=new ControllerFuncionario();
-                    funcionario.actualizarFuncionario(funcionarioModelo.getId(),nome,categoria,dataNascimento,residencia,telefone,veiculo,"");
+                    funcionario.actualizarFuncionario(funcionarioModelo.getId(),nome,categoria,dataNascimento,residencia,telefone,veiculo,"",getContext());
                     Toast.makeText(getContext(),"Funcionario Actualizado com sucesso",Toast.LENGTH_SHORT).show();
                     txtNome.setText(null);
                     txtResidencia.setText(null);

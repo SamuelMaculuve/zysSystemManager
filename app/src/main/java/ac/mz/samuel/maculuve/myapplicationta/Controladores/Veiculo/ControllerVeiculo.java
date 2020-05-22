@@ -1,5 +1,7 @@
 package ac.mz.samuel.maculuve.myapplicationta.Controladores.Veiculo;
 
+import android.content.Context;
+
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Rota.RotaModelo;
 import ac.mz.samuel.maculuve.myapplicationta.Models.DataBase;
 import ac.mz.samuel.maculuve.myapplicationta.Rota;
@@ -7,9 +9,10 @@ import ac.mz.samuel.maculuve.myapplicationta.Veiculo;
 
 public class ControllerVeiculo {
 
-    public void registarVeiculo(String nome, String matricula, String rota, int lotacao, int nrPassageiros) {
+    public void registarVeiculo(String nome, String matricula, String rota, int lotacao, int nrPassageiros, Context context) throws Exception {
         VeiculoModelo veiculoModelo = new VeiculoModelo(DataBase.getListaLigadaVeiculo().tamanho() + 1, nome, matricula, rota, lotacao,nrPassageiros);
         DataBase.setListaLigadaVeiculo(veiculoModelo);
+        DataBase.gravarVeiculos(DataBase.getListaLigadaVeiculo(),context);
     }
     public void apagarVeiculo(int id) {
         DataBase.getListaLigadaVeiculo().removePosicao(id);

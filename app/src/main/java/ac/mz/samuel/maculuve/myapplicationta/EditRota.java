@@ -88,9 +88,14 @@ public class EditRota extends Fragment {
             public void onClick(View view) {
 
                 ControllerRota controllerRota=new ControllerRota();
-                controllerRota.actualizarRota(rotaModelo.getId(),txtTerminal1.getText().toString(),
-                        txtTerminal2.getText().toString(),txtVia.getText().toString(),Double.parseDouble(txtTempo.getText().toString()));
-                Toast.makeText(getContext(),"Rota actualizada com sucesso",Toast.LENGTH_SHORT).show();
+                try {
+                    controllerRota.actualizarRota(rotaModelo.getId(),txtTerminal1.getText().toString(),
+                            txtTerminal2.getText().toString(),txtVia.getText().toString(),Double.parseDouble(txtTempo.getText().toString()),getContext());
+                    Toast.makeText(getContext(),"Rota actualizada com sucesso",Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(getContext(),"Erro ao actualizar Rota, "+e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });

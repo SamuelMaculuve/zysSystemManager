@@ -1,5 +1,6 @@
 package ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario;
 
+import android.content.Context;
 import android.widget.Toast;
 
 import java.util.Date;
@@ -11,11 +12,11 @@ import ac.mz.samuel.maculuve.myapplicationta.Models.Veiculo;
 
 public class ControllerFuncionario {
 
-    public void registarFuncionario(String nome,String cargo, Date dataNascimento, String residencia, String telefone, String veiculo,String categoria) {
+    public void registarFuncionario(String nome, String cargo, Date dataNascimento, String residencia, String telefone, String veiculo, String categoria, Context context) throws Exception {
 
          FuncionarioModelo funcionarioModelo=new FuncionarioModelo(DataBase.getListaLigadaFuncionario().tamanho()+1,nome,cargo,dataNascimento,residencia,telefone,veiculo,categoria);
          DataBase.setListaLigadaFuncionario(funcionarioModelo);
-        // DataBase.gravarFuncionarios(DataBase.getListaLigadaFuncionario());
+         DataBase.gravarFuncionarios(DataBase.getListaLigadaFuncionario(),context);
     }
 
     public void apagarFuncionario(int id){
@@ -30,7 +31,8 @@ public class ControllerFuncionario {
 
     }
 
-    public FuncionarioModelo popularFuncionario(int id){
+    public FuncionarioModelo popularFuncionario(int id,Context context){
+        DataBase.lerFuncionarios(context);
         FuncionarioModelo funcionario;
         for (int i = 0; i < DataBase.getListaLigadaFuncionario().tamanho(); i++) {
             funcionario = (FuncionarioModelo) DataBase.getListaLigadaFuncionario().pega(i);
@@ -41,7 +43,7 @@ public class ControllerFuncionario {
         return null;
     }
 
-    public void actualizarFuncionario(int id, String nome,String cargo, Date dataNascimento, String residencia, String telefone, String veiculo,String categoria) {
+    public void actualizarFuncionario(int id, String nome,String cargo, Date dataNascimento, String residencia, String telefone, String veiculo,String categoria, Context context) throws Exception {
         FuncionarioModelo funcionarioModelo;
         for (int i = 0; i < DataBase.getListaLigadaFuncionario().tamanho(); i++) {
             funcionarioModelo = (FuncionarioModelo) DataBase.getListaLigadaFuncionario().pega(i);
@@ -55,6 +57,7 @@ public class ControllerFuncionario {
 
             }
         }
+        DataBase.gravarFuncionarios(DataBase.getListaLigadaFuncionario(),context);
 
     }
 

@@ -80,15 +80,13 @@ public class CadRota extends Fragment {
             public void onClick(View view) {
 
                 try {
-
-
                     String terminal1 = txtTerminal1.getText().toString();
                     String terminal2 = txtTerminal2.getText().toString();
                     String via = txtVia.getText().toString();
                     double tempo = Double.parseDouble(txtTempo.getText().toString());
 
                     ControllerRota controllerRota = new ControllerRota();
-                    controllerRota.registarRota(terminal1, terminal2, via, tempo);
+                    controllerRota.registarRota(terminal1, terminal2, via, tempo,getContext());
                     Toast.makeText(getContext(), "Rota Cadastrada com sucesso", Toast.LENGTH_SHORT).show();
                     txtVia.setText(null);
                     txtTerminal1.setText(null);

@@ -63,6 +63,7 @@ public class Veiculo extends Fragment {
     private AutoCompleteTextView actv;
     public void carregarDados() {
         adapterList = null;
+        DataBase.lerVeiculos(getContext());
         String nomes[] = new String[DataBase.getListaLigadaVeiculo().tamanho()];
         String matricula[] = new String[DataBase.getListaLigadaRota().tamanho()];
         VeiculoModelo veiculoModelo;
@@ -70,7 +71,7 @@ public class Veiculo extends Fragment {
             veiculoModelo = (VeiculoModelo) DataBase.getListaLigadaVeiculo().pega(i);
             nomes[i] =veiculoModelo.getNome();
             matricula[i] = "Matricula: "+veiculoModelo.getMatricula()+" | Rota "+veiculoModelo.getRota()+" | Lt. "+veiculoModelo.getLotacao()+" lugares.";
-            System.out.println(nomes[i]);
+            System.out.println(matricula[i]);
         }
         adapterList = new MyListAdapter(getActivity(), nomes, matricula, imgid);
     }
@@ -87,7 +88,7 @@ public class Veiculo extends Fragment {
                 matricula[0] = "Matricula: "+veiculoModelo.getMatricula()+" | Rota "+veiculoModelo.getRota()+" | Lt. "+veiculoModelo.getLotacao()+" lugares.";;
             }
         }
-        adapterList=new MyListAdapter(getActivity(), nome, via,imgid);
+        adapterList=new MyListAdapter(getActivity(), nome, matricula,imgid);
     }
 
 
