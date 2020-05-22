@@ -32,7 +32,7 @@ public class DataBase {
         return listaLigadaVeiculo;
     }
     public static void setListaLigadaVeiculo(VeiculoModelo veiculoModelo) {
-        listaLigadaRota.adicionaFim(veiculoModelo);
+        listaLigadaVeiculo.adicionaFim(veiculoModelo);
     }
 
 

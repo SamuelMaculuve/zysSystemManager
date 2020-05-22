@@ -77,6 +77,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Veiculo()).commit();
                 break;
+
+            case R.id.chapa:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new BuscarChapa()).commit();
+                break;
             case R.id.mapa:
                 Intent intent = new Intent(getApplication(),MapsActivity.class);
                 startActivity(intent);

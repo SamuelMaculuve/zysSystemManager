@@ -1,6 +1,8 @@
 package ac.mz.samuel.maculuve.myapplicationta.Controladores.Veiculo;
 
-public class NoVeiculo {
+import java.io.Serializable;
+
+public class NoVeiculo implements Serializable {
 
     private Object elemento;
     private NoVeiculo proximo;

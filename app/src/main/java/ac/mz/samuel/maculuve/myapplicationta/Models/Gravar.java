@@ -14,7 +14,6 @@ public class Gravar{
     public static void gravarFuncionario (Serializable s, Context context) throws Exception{
         ObjectOutputStream oos=null;
         try{
-          //  File f=new File("funcionarios.dat");
             FileOutputStream fos=context.openFileOutput("funcionarios.dat",MODE_PRIVATE);
             oos=new ObjectOutputStream(fos);
             oos.writeObject(s);
@@ -45,10 +44,12 @@ public class Gravar{
     public static void gravarVeiculo (Serializable s, Context context) throws Exception{
         ObjectOutputStream oos=null;
         try{
-            FileOutputStream fos=context.openFileOutput("veiculo.dat",MODE_PRIVATE);
+            FileOutputStream fos=context.openFileOutput("veiculos.dat",MODE_PRIVATE);
             oos=new ObjectOutputStream(fos);
             oos.writeObject(s);
+            System.out.println("Gravou veiculo");
         }catch (Exception e) {
+            System.out.println("Erro "+e.getMessage());
         }finally
         {
             if (oos!=null){

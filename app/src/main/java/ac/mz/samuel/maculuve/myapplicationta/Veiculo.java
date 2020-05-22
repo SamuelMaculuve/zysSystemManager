@@ -36,18 +36,6 @@ public class Veiculo extends Fragment {
     ImageView imgPesquisar;
     private FloatingActionButton cadVeiculo,editVeiculo;
 
-    String[] maintitle ={
-            "Title 1","Title 2",
-            "Title 3","Title 4",
-            "Title 5",
-    };
-
-    String[] subtitle ={
-            "Sub Title 1","Sub Title 2",
-            "Sub Title 3","Sub Title 4",
-            "Sub Title 5",
-    };
-
     Integer[] imgid={
             R.drawable.ic_local_car_wash_black_24dp,R.drawable.ic_local_car_wash_black_24dp,
             R.drawable.ic_local_car_wash_black_24dp,R.drawable.ic_local_car_wash_black_24dp,
@@ -64,9 +52,10 @@ public class Veiculo extends Fragment {
     private AutoCompleteTextView actv;
     public void carregarDados() {
         adapterList = null;
-      //  DataBase.lerVeiculos(getContext());
+        DataBase.lerVeiculos(getContext());
+        System.out.println(DataBase.getListaLigadaVeiculo().tamanho()+" T");
         String nomes[] = new String[DataBase.getListaLigadaVeiculo().tamanho()];
-        String matricula[] = new String[DataBase.getListaLigadaRota().tamanho()];
+        String matricula[] = new String[DataBase.getListaLigadaVeiculo().tamanho()];
         VeiculoModelo veiculoModelo;
         for (int i = 0; i < DataBase.getListaLigadaVeiculo().tamanho(); i++) {
             veiculoModelo = (VeiculoModelo) DataBase.getListaLigadaVeiculo().pega(i);
@@ -74,6 +63,7 @@ public class Veiculo extends Fragment {
             matricula[i] = "Matricula: "+veiculoModelo.getMatricula()+" | Rota "+veiculoModelo.getRota()+" | Lt. "+veiculoModelo.getLotacao()+" lugares.";
             System.out.println(matricula[i]);
         }
+       // String[] nomes={"teste","teste"};
         adapterList = new MyListAdapter(getActivity(), nomes, matricula, imgid);
     }
 
@@ -108,7 +98,6 @@ public class Veiculo extends Fragment {
 
         View view =  inflater.inflate(R.layout.fragment_veiculo, container, false);
         cadVeiculo = view.findViewById(R.id.cadVeiculo);
-        editVeiculo = view.findViewById(R.id.editVeiculo);
         imgPesquisar = view.findViewById(R.id.imgPesquisar);
 
         imgPesquisar.setOnClickListener(new View.OnClickListener() {
@@ -156,15 +145,19 @@ public class Veiculo extends Fragment {
                             @Override
                             public void onClick(SweetAlertDialog sDialog) {
                                 sDialog.dismissWithAnimation();
-                                ControllerVeiculo controllerVeiculo = new ControllerVeiculo();
-                                controllerVeiculo.apagarVeiculo(position + 1);
-                                showToast("Apagado com sucesso");
-                                list.setAdapter(null);
-                                carregarDados();
-                                list.setAdapter(adapterList);
-                                actv.setAdapter(null);
-                                pegaNomes();
-                                actv.setAdapter(adapter);
+                                try {
+                                    ControllerVeiculo controllerVeiculo = new ControllerVeiculo();
+                                    controllerVeiculo.apagarVeiculo(position + 1, getContext());
+                                    showToast("Apagado com sucesso");
+                                    list.setAdapter(null);
+                                    carregarDados();
+                                    list.setAdapter(adapterList);
+                                    actv.setAdapter(null);
+                                    pegaNomes();
+                                    actv.setAdapter(adapter);
+                                }catch (Exception e){
+                                    showToast("Erro ao apagar");
+                                }
 
 
                             }

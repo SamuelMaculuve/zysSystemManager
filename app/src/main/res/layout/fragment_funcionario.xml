@@ -38,23 +38,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:hint="Apelido" />
+                android:hint="Nome" />
         </RelativeLayout>
 
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.0">
-
-            <Spinner
-                android:id="@+id/spCargo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:hint="Radius (m)" />
-
-        </RelativeLayout>
+            android:layout_weight="1.0"/>
     </LinearLayout>
 
     <LinearLayout

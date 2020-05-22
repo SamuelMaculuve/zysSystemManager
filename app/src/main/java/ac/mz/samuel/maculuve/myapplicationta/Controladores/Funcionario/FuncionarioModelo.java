@@ -3,8 +3,6 @@ package ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario;
 import java.io.Serializable;
 import java.util.Date;
 
-import ac.mz.samuel.maculuve.myapplicationta.Models.Veiculo;
-
 public class FuncionarioModelo implements Serializable {
 
     private int id;

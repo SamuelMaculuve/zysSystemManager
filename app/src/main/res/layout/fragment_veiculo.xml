@@ -39,23 +39,14 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
 
-                android:hint="Rota" />
+                android:hint="Matricula" />
         </RelativeLayout>
 
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.0">
-
-            <Spinner
-                android:id="@+id/spCargo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:hint="Radius (m)" />
-
-        </RelativeLayout>
+            android:layout_weight="1.0"/>
     </LinearLayout>
 
     <LinearLayout
@@ -101,15 +92,6 @@
                 app:fab_icon="@drawable/ic_add_black_24dp"
                 app:fab_size="mini"
                 app:fab_title="Registar Veiculo" />
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/editVeiculo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:fab_addButtonColorNormal="@color/white"
-                app:fab_addButtonColorPressed="@color/colorAccent"
-                app:fab_icon="@drawable/ic_add_black_24dp"
-                app:fab_size="mini"
-                app:fab_title="Editar Veiculo" />
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
     </LinearLayout>
 

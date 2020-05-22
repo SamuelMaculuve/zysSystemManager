@@ -34,9 +34,10 @@ public class EditVeiculo extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
     static VeiculoModelo veiculoModelo=null;
-    public EditVeiculo(VeiculoModelo veiculoModelo) {
-        // Required empty public constructor
+    public EditVeiculo(VeiculoModelo veiculo) {
+        veiculoModelo=veiculo;
     }
 
     /**
@@ -81,13 +82,13 @@ public class EditVeiculo extends Fragment {
         txtNome=view.findViewById(R.id.txtNome);
         spRota = view.findViewById(R.id.spRota);
 
-        txtNome.setText(veiculoModelo.getNome());
+       // txtNome.setText(veiculoModelo.getNome());
         txtLotacao.setText(veiculoModelo.getLotacao());
         txtMatricula.setText(veiculoModelo.getMatricula());
         txtNrPassageiros.setText(veiculoModelo.getNrPassageiros());
 
         String rotas[]=new String[1+ DataBase.getListaLigadaRota().tamanho()];
-        rotas[0]="_Escolha a rota_";
+        rotas[0]="-Escolha a rota-";
         RotaModelo rotaModelo;
         for (int i=0;i<DataBase.getListaLigadaRota().tamanho();i++){
             rotaModelo=(RotaModelo)DataBase.getListaLigadaRota().pega(i);

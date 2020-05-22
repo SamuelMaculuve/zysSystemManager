@@ -8,11 +8,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 public class Ler {
+
     public static Object lerFuncionarios(Context  context) throws IOException {
 
         ObjectInputStream ois = null;
         try {
-          //  File f = new File("funcionarios.dat");
             FileInputStream fis =context.openFileInput("funcionarios.dat");
             ois = new ObjectInputStream(fis);
             Object o = ois.readObject();
@@ -47,7 +47,7 @@ public class Ler {
     public static Object lerVeiculo(Context  context) throws IOException {
         ObjectInputStream ois = null;
         try {
-            FileInputStream fis =context.openFileInput("veiculo.dat");
+            FileInputStream fis =context.openFileInput("veiculos.dat");
             ois = new ObjectInputStream(fis);
             Object o = ois.readObject();
             return o;

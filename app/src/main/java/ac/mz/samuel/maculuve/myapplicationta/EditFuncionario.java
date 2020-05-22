@@ -84,7 +84,7 @@ public class EditFuncionario extends Fragment {
         txtResidencia=view.findViewById(R.id.txtResidencia);
         txtTelefone=view.findViewById(R.id.txtTelefone);
         txtData=view.findViewById(R.id.txtData);
-        spCategoria = view.findViewById(R.id.spCategoria);
+        spCategoria = view.findViewById(R.id.spRota);
         spVeiculo = view.findViewById(R.id.spVeiculo);
         btnAlterar=view.findViewById(R.id.saveFun);
 
@@ -94,8 +94,8 @@ public class EditFuncionario extends Fragment {
         txtResidencia.setText(funcionarioModelo.getResidencia());
         txtTelefone.setText(funcionarioModelo.getTelefone());
 
-        String veiculos[]=new String[1+ DataBase.getListaLigadaVeiculo().tamanho()];
-        veiculos[0]="-Escolha a rota-";
+        DataBase.lerVeiculos(getContext());
+        String veiculos[]=new String[DataBase.getListaLigadaVeiculo().tamanho()];
         VeiculoModelo veiculoModelo;
         for (int i=0;i<DataBase.getListaLigadaVeiculo().tamanho();i++){
             veiculoModelo=(VeiculoModelo) DataBase.getListaLigadaVeiculo().pega(i);
@@ -105,6 +105,11 @@ public class EditFuncionario extends Fragment {
         ArrayAdapter<String> adapterVeiculo = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,veiculos);
         adapterVeiculo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spVeiculo.setAdapter(adapterVeiculo);
+
+        String categoria[]={"-Escolha a categoria-","Cobrador","Motorista"};
+        ArrayAdapter<String> adapterCategoria = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,categoria);
+        adapterVeiculo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spCategoria.setAdapter(adapterCategoria);
 
         btnAlterar.setOnClickListener(new View.OnClickListener() {
             @Override

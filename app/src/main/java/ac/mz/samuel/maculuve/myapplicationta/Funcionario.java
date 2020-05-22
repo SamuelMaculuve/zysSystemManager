@@ -62,6 +62,7 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
         adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.select_dialog_item,nome);
     }
     public  void carregarDados(){
+        DataBase.lerFuncionarios(getContext());
         adapterList=null;
         String nomes[]=new String[DataBase.getListaLigadaFuncionario().tamanho()];
         String residencia[]=new String[DataBase.getListaLigadaFuncionario().tamanho()];
@@ -69,7 +70,7 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
         for (int i = 0; i < DataBase.getListaLigadaFuncionario().tamanho(); i++) {
             funcionarioModelo = (FuncionarioModelo) DataBase.getListaLigadaFuncionario().pega(i);
             nomes[i] = funcionarioModelo.getNome();
-            residencia[i] = funcionarioModelo.getResidencia();
+            residencia[i] = "Categoria: "+funcionarioModelo.getCargo()+" | Residencia: "+funcionarioModelo.getResidencia();
         }
         adapterList=new MyListAdapter(getActivity(), nomes, residencia,imgid);
     }
@@ -109,12 +110,10 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
         View view =  inflater.inflate(R.layout.fragment_funcionario, container, false);
         cadFuncionario = view.findViewById(R.id.cadFuncionario);
         imgPesquisar = view.findViewById(R.id.imgPesquisar);
-        spCargo = view.findViewById(R.id.spCargo);
       //  editFuncionario = view.findViewById(R.id.editFuncionario);
 
         carregarDados();
         final ControllerFuncionario controllerFuncionario=new ControllerFuncionario();
-        controllerFuncionario.visualizarFuncionarios();
 
         list = (ListView) view.findViewById(R.id.list);
         list.setAdapter(adapterList);
@@ -133,8 +132,6 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
                 list.setAdapter(adapterList);
             }
         });
-       // actv.setOnItemSelectedListener(new View.OnFocusChangeListener());
-        //open Register Funcionario
         cadFuncionario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,14 +139,7 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
                         new CadFuncionario()).commit();
             }
         });
-        //open edit
-//        editFuncionario.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new EditFuncionario()).commit();
-//            }
-//        });
+
         //Delete a Funcionario
         AdapterView.OnItemClickListener itemClickListener  = new AdapterView.OnItemClickListener() {
             @Override
@@ -161,16 +151,20 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                             @Override
                             public void onClick(SweetAlertDialog sDialog) {
-                                sDialog.dismissWithAnimation();
-                                ControllerFuncionario controllerFuncionario=new ControllerFuncionario();
-                                controllerFuncionario.apagarFuncionario(position+1);
-                                showToast("Apagado com sucesso");
-                                list.setAdapter(null);
-                                carregarDados();
-                                list.setAdapter(adapterList);
-                                actv.setAdapter(null);
-                                pegaNomes();
-                                actv.setAdapter(adapter);
+                                try {
+                                    sDialog.dismissWithAnimation();
+                                    ControllerFuncionario controllerFuncionario = new ControllerFuncionario();
+                                    controllerFuncionario.apagarFuncionario(position + 1, getContext());
+                                    showToast("Apagado com sucesso");
+                                    list.setAdapter(null);
+                                    carregarDados();
+                                    list.setAdapter(adapterList);
+                                    actv.setAdapter(null);
+                                    pegaNomes();
+                                    actv.setAdapter(adapter);
+                                }catch (Exception e){
+                                    showToast("Erro ao apagar "+e.getMessage());
+                                }
 
                             }
                         })
@@ -181,7 +175,7 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
                                 DataBase.lerFuncionarios(getContext());
                                 ControllerFuncionario controllerFuncionario1=new ControllerFuncionario();
                                 getFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                                        new EditFuncionario(controllerFuncionario1.popularFuncionario(position+1,getContext()))).commit();
+                                        new EditFuncionario(controllerFuncionario1.popularFuncionario(position+1))).commit();
 
                             }
                         })
@@ -189,11 +183,6 @@ public class Funcionario extends Fragment implements AdapterView.OnItemSelectedL
             }
         };
         list.setOnItemClickListener(itemClickListener);
-        //Spinner Cargo
-        ArrayAdapter<String> adapterCargo = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,cargo);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spCargo.setAdapter(adapterCargo);
-        spCargo.setOnItemSelectedListener(this);
 
         //Search for funcionrio
         imgPesquisar.setOnClickListener(new View.OnClickListener() {

@@ -2,6 +2,8 @@ package ac.mz.samuel.maculuve.myapplicationta.Controladores.Veiculo;
 
 import android.content.Context;
 
+import java.net.PortUnreachableException;
+
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Rota.RotaModelo;
 import ac.mz.samuel.maculuve.myapplicationta.Models.DataBase;
 import ac.mz.samuel.maculuve.myapplicationta.Rota;
@@ -14,9 +16,11 @@ public class ControllerVeiculo {
         DataBase.setListaLigadaVeiculo(veiculoModelo);
         DataBase.gravarVeiculos(DataBase.getListaLigadaVeiculo(),context);
     }
-    public void apagarVeiculo(int id) {
+    public void apagarVeiculo(int id,Context context) throws Exception {
         DataBase.getListaLigadaVeiculo().removePosicao(id);
+        DataBase.gravarVeiculos(DataBase.getListaLigadaVeiculo(),context);
     }
+
 
     public VeiculoModelo popularVeiculo(int id) {
         VeiculoModelo veiculoModelo;
@@ -44,6 +48,7 @@ public class ControllerVeiculo {
         }
 
     }
+
 
 
 

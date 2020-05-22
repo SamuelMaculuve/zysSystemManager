@@ -1,8 +1,10 @@
 package ac.mz.samuel.maculuve.myapplicationta.Controladores.Veiculo;
 
+import java.io.Serializable;
+
 import ac.mz.samuel.maculuve.myapplicationta.Rota;
 
-public class VeiculoModelo {
+public class VeiculoModelo implements Serializable {
 
     private  int id;
     private  String nome;

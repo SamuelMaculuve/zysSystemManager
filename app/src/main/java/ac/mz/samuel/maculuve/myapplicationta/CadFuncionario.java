@@ -31,12 +31,9 @@ public class CadFuncionario extends Fragment {
     DatePickerDialog picker;
     private TextView txtData,txtCategoria,txtResidencia,txtTelefone,txtNome;
     private Spinner spCategoria,spVeiculo;
-    String[] categoria ={"","Cobrador","Motorista"};
+    String[] categoria ={"-Escolha a categoria-","Cobrador","Motorista"};
     String[] veiculo ={"","Cobrador","Mororista"};
 
-    private void _instanciar(){
-      //  p Button btnCadastrar = findViewById(R.id.btnCadastrar);
-    }
     public CadFuncionario() {
         // Required empty public constructor
     }
@@ -58,7 +55,7 @@ public class CadFuncionario extends Fragment {
         View view=inflater.inflate(R.layout.fragment_cad_funcionario, container, false);
         btnCadastrar=view.findViewById(R.id.saveFun);
         txtData=view.findViewById(R.id.txtData);
-        spCategoria = view.findViewById(R.id.spCategoria);
+        spCategoria = view.findViewById(R.id.spRota);
         spVeiculo = view.findViewById(R.id.spVeiculo);
         txtNome=view.findViewById(R.id.txtNome);
         txtResidencia=view.findViewById(R.id.txtResidencia);
@@ -78,7 +75,6 @@ public class CadFuncionario extends Fragment {
             veiculoModelo=(VeiculoModelo) DataBase.getListaLigadaVeiculo().pega(i);
             veiculos[i]=veiculoModelo.getNome();
         }
-
         ArrayAdapter<String> adapterVeiculo = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,veiculos);
         adapterVeiculo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spVeiculo.setAdapter(adapterVeiculo);
@@ -92,7 +88,6 @@ public class CadFuncionario extends Fragment {
                     String telefone=  txtTelefone.getText().toString();
                     String veiculo=spVeiculo.getSelectedItem().toString();
                     String categoria=spCategoria.getSelectedItem().toString();
-                   // Date dataNascimento= new Date();
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     Date dataNascimento = formato.parse(txtData.getText().toString());
                     ControllerFuncionario funcionario=new ControllerFuncionario();
@@ -106,8 +101,6 @@ public class CadFuncionario extends Fragment {
                 }catch (Exception ex) {
                     System.out.println("Erro" +ex.getMessage());
                 }
-                ControllerFuncionario controllerFuncionario=new ControllerFuncionario();
-                controllerFuncionario.visualizarFuncionarios();
             }
         });
 

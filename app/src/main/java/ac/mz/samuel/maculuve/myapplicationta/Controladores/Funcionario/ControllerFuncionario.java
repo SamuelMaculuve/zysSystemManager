@@ -1,14 +1,11 @@
 package ac.mz.samuel.maculuve.myapplicationta.Controladores.Funcionario;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import java.util.Date;
 
 import ac.mz.samuel.maculuve.myapplicationta.Controladores.Rota.RotaModelo;
-import ac.mz.samuel.maculuve.myapplicationta.Funcionario;
 import ac.mz.samuel.maculuve.myapplicationta.Models.DataBase;
-import ac.mz.samuel.maculuve.myapplicationta.Models.Veiculo;
 
 public class ControllerFuncionario {
 
@@ -19,20 +16,12 @@ public class ControllerFuncionario {
          DataBase.gravarFuncionarios(DataBase.getListaLigadaFuncionario(),context);
     }
 
-    public void apagarFuncionario(int id){
+    public void apagarFuncionario(int id,Context context) throws Exception {
         DataBase.getListaLigadaFuncionario().removePosicao(id);
-    }
-    public  void visualizarFuncionarios(){
-        FuncionarioModelo funcionario;
-        for (int i = 0; i < DataBase.getListaLigadaFuncionario().tamanho(); i++) {
-            funcionario = (FuncionarioModelo) DataBase.getListaLigadaFuncionario().pega(i);
-            System.out.println(funcionario);
-        }
-
+        DataBase.gravarFuncionarios(DataBase.getListaLigadaFuncionario(),context);
     }
 
-    public FuncionarioModelo popularFuncionario(int id,Context context){
-        DataBase.lerFuncionarios(context);
+    public FuncionarioModelo popularFuncionario(int id){
         FuncionarioModelo funcionario;
         for (int i = 0; i < DataBase.getListaLigadaFuncionario().tamanho(); i++) {
             funcionario = (FuncionarioModelo) DataBase.getListaLigadaFuncionario().pega(i);
